@@ -1,0 +1,409 @@
+﻿@model htsApp.Models.HTSData
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<hr />
+
+
+
+<form asp-action="Create">
+    <div class="row text-secondary" style="background-color:aqua;">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row" style="background-color: bisque; margin:3px;padding:5px;">
+            <div class="col-md-3" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="NameofSite" class="control-label "></label>
+
+                </div>
+                <div class="row">
+                    <input asp-for="NameofSite" class="form-control" />
+                    <span asp-validation-for="NameofSite" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="OutreachName" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="OutreachName" class="form-control" />
+                    <span asp-validation-for="OutreachName" class="text-danger"></span>
+                </div>
+
+
+            </div>
+            <div class="col-md-3" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="District" class="control-label"></label>
+                </div>
+                <div class="row">
+                    @*<input asp-for="District" class="form-control" id="districtname" />*@
+
+                    <input type="text" id="districtname" class="form-control" />
+                    @*<select asp-for="District" class="form-control"id="districtname">
+                        <option value=""></option>
+
+                    </select>*@
+                    <span asp-validation-for="District" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="col-md-2" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="Month" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="Month" class="form-control" />
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="col-md-2" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="Year" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+
+            </div>
+            <div class="col-md-2" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="OutreachOrganizer" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="OutreachOrganizer" class="form-control" />
+                    <span asp-validation-for="OutreachOrganizer" class="text-danger"></span>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6" style="margin-top:30px;margin-left:10px;padding:5px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.DisplayNameFor(model => model.PublicData)
+                            </div>
+                            <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                <input class="form-check-input" asp-for="PublicData" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.DisplayNameFor(model => model.PrivateData)
+                            </div>
+                            <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                <input class="form-check-input" asp-for="PrivateData" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.DisplayNameFor(model => model.CSO)
+                            </div>
+                            <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                <input class="form-check-input" asp-for="CSO" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="DateData" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="DateData" class="form-control" id="ndate" />
+                <span asp-validation-for="DateData" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
+                <label asp-for="ClientCode" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="ClientCode" class="form-control" />
+                <span asp-validation-for="ClientCode" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
+                <label asp-for="TypeofAttendance" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="TypeofAttendance" class="form-control" />
+                <span asp-validation-for="TypeofAttendance" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
+                <label asp-for="Age" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
+                <label asp-for="Sex" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Sex" class="form-control" />
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="MaritalStatus" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="MaritalStatus" class="form-control" />
+                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="ResidenceShehia" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="ResidenceShehia" class="form-control" />
+                <span asp-validation-for="ResidenceShehia" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="ResidenceDistrict" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="ResidenceDistrict" class="form-control" />
+                <span asp-validation-for="ResidenceDistrict" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
+                <label asp-for="Occupation" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Occupation" class="form-control" />
+                <span asp-validation-for="Occupation" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="ClientsCategory" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="ClientsCategory" class="form-control" />
+                <span asp-validation-for="ClientsCategory" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
+                <label asp-for="Disabled" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Disabled" class="form-control" />
+                <span asp-validation-for="Disabled" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
+                <label asp-for="HTCApproach" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="HTCApproach" class="form-control" />
+                <span asp-validation-for="HTCApproach" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
+                <label asp-for="TypeofCounselling" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="TypeofCounselling" class="form-control" />
+                <span asp-validation-for="TypeofCounselling" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="Reasonfortesting" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Reasonfortesting" class="form-control" />
+                <span asp-validation-for="Reasonfortesting" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="Result" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Result" class="form-control" />
+                <span asp-validation-for="Result" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="DiscordantCouple" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="DiscordantCouple" class="form-control" />
+                <span asp-validation-for="DiscordantCouple" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="ResultPositiveType" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="ResultPositiveType" class="form-control" />
+                <span asp-validation-for="ResultPositiveType" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="Receivedresult" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Receivedresult" class="form-control" />
+                <span asp-validation-for="Receivedresult" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="Noofmalecondomsissued" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Noofmalecondomsissued" class="form-control" />
+                <span asp-validation-for="Noofmalecondomsissued" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="Nooffemalecondomsissued" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Nooffemalecondomsissued" class="form-control" />
+                <span asp-validation-for="Nooffemalecondomsissued" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
+                <label asp-for="Referredto" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Referredto" class="form-control" />
+                <span asp-validation-for="Referredto" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
+                <label asp-for="CTCNumber" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="CTCNumber" class="form-control" id="ctcno"/>
+                <span asp-validation-for="CTCNumber" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        
+        <div class="col-md-12" style="margin-top:10px;margin-bottom:10px;padding-left:5px;">
+            <input type="submit" value="Save" class="btn btn-secondary text-danger"
+                   style="background-color: bisque; margin:3px;padding:5px;" />
+        </div>
+    </div>
+</form>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#districtname').autocomplete({
+            source: '/api/districts/search'
+        });
+    });
+    document.getElementById('ndate').focus();
+
+    $(document).ready(function () {
+        $('#ctcno').mask('00-00-0000-000000');
+       
+    });
+</script>
+}

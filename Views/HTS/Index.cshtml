@@ -1,0 +1,218 @@
+﻿@model IEnumerable<htsApp.Models.HTSData>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameofSite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutreachName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutreachOrganizer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrivateData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CSO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeofAttendance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaritalStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResidenceShehia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResidenceDistrict)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Occupation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientsCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HTCApproach)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeofCounselling)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reasonfortesting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscordantCouple)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResultPositiveType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Receivedresult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Noofmalecondomsissued)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nooffemalecondomsissued)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Referredto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CTCNumber)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameofSite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutreachName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutreachOrganizer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrivateData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CSO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeofAttendance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaritalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResidenceShehia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResidenceDistrict)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Occupation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientsCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HTCApproach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeofCounselling)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reasonfortesting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscordantCouple)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultPositiveType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receivedresult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Noofmalecondomsissued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nooffemalecondomsissued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Referredto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CTCNumber)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
