@@ -1,0 +1,135 @@
+﻿@model RoleEdit
+
+
+@{
+    ViewData["Title"] = "Add/remove Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+
+        <h4>Edit <span class="font-italic text-primary"> @Model.RoleName</span> Role</h4>
+
+    </div>
+</div>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit" method="post">
+
+
+    <input type="hidden" name="roleName" value="@Model.RoleName.Name" />
+    <input type="hidden" name="roleId" value="@Model.RoleName.Id" />
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+
+            @if (Model.NotMembersToRole.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col-md-4" style="border-bottom:solid">
+                        <p class="text-info">
+                            All User/Users are member to this Role.
+                        </p>
+                    </div>
+                </div>
+
+            }
+
+            else
+            {
+                <div class="row">
+                    <div class="col-md-6" style="color:black;background-color:burlywood">
+                        <p class="text-secondary">
+                            Not Members of this
+                            <span style="color:black;"> @Model.RoleName </span>role, Add users to this role
+                        </p>
+                    </div>
+                </div>
+
+                @foreach (ApplicationUser userap in Model.NotMembersToRole)
+                {
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            @userap.UserName
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="checkbox" name="IdToAdd" value="@userap.Id">
+                        </div>
+
+                    </div>
+
+                }
+            }
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            @if (Model.MemberToRole.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-info">
+                            No Users Are Members
+                        </p>
+                    </div>
+                </div>
+
+            }
+
+            else
+            {
+                <div class="row">
+                    <div class="col-md-6" style="color:black;background-color:burlywood">
+                        <p class="text-info">Members of this <span style="color:black;"> @Model.RoleName </span>role, Remove users to this role</p>
+                    </div>
+                </div>
+
+                @foreach (ApplicationUser userap in Model.MemberToRole)
+                {
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            @userap.UserName
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="checkbox" name="IdToDelete" value="@userap.Id">
+                        </div>
+
+                    </div>
+
+                }
+            }
+
+        </div>
+
+    </div>
+
+
+
+
+    @*<h6 class="bg-info p-1 text-white">Remove this  @Model.Role.Name role to..</h6>*@
+
+    <button type="submit" class="btn btn-primary">Add/Remove Role</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+
+@section Scripts
+ {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+}

@@ -44,13 +44,13 @@
                     <label asp-for="District" class="control-label"></label>
                 </div>
                 <div class="row">
-                    @*<input asp-for="District" class="form-control" id="districtname" />*@
+                    <input asp-for="District" id="ndistrictname" aria-label="" class="form-control" />
 
-                    <input type="text" id="districtname" class="form-control" />
-                    @*<select asp-for="District" class="form-control"id="districtname">
-                        <option value=""></option>
+                    @*<input type="text" id="ndistrictname" class="form-control" />*@
+                    @*<select asp-for="District" class="form-control" asp-items="ViewBag.dsn">
+                            <option value=""></option>
+                        </select>*@
 
-                    </select>*@
                     <span asp-validation-for="District" class="text-danger"></span>
                 </div>
 
@@ -60,7 +60,24 @@
                     <label asp-for="Month" class="control-label"></label>
                 </div>
                 <div class="row">
-                    <input asp-for="Month" class="form-control" />
+                    @*<input asp-for="Month" class="form-control" />*@
+                    <select asp-for="Month" class="form-control">
+                        <option value=""></option>
+                        <option>JANUARY</option>
+                        <option>FEBRUARY</option>
+                        <option>MARCH</option>
+                        <option>APRIL</option>
+                        <option>MAY</option>
+                        <option>JUNE</option>
+                        <option>JULY</option>
+                        <option>AUGUST</option>
+                        <option>SEPTEMBER</option>
+                        <option>OCTOBER</option>
+                        <option>NOVEMBER</option>
+                        <option>DECEMBER</option>
+
+
+                    </select>
                     <span asp-validation-for="Month" class="text-danger"></span>
                 </div>
 
@@ -133,7 +150,7 @@
             </div>
 
         </div>
-        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+        <div class="col-md-3" style="margin-left:12px;margin-top:2px;">
             <div class="row">
                 <label asp-for="DateData" class="control-label"></label>
             </div>
@@ -149,7 +166,7 @@
                 <label asp-for="ClientCode" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ClientCode" class="form-control" />
+                <input asp-for="ClientCode" class="form-control" id="nclientcode" />
                 <span asp-validation-for="ClientCode" class="text-danger"></span>
             </div>
 
@@ -160,7 +177,10 @@
                 <label asp-for="TypeofAttendance" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="TypeofAttendance" class="form-control" />
+                @*<input asp-for="TypeofAttendance" class="form-control" />*@
+                <select asp-for="TypeofAttendance" asp-items="Html.GetEnumSelectList<TypeofAttendance>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="TypeofAttendance" class="text-danger"></span>
             </div>
 
@@ -182,7 +202,10 @@
                 <label asp-for="Sex" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Sex" class="form-control" />
+                @*<input asp-for="Sex" class="form-control" />*@
+                <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Sex" class="text-danger"></span>
             </div>
 
@@ -193,7 +216,10 @@
                 <label asp-for="MaritalStatus" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="MaritalStatus" class="form-control" />
+                @*<input asp-for="MaritalStatus" class="form-control" />*@
+                <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>
 
@@ -204,7 +230,7 @@
                 <label asp-for="ResidenceShehia" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ResidenceShehia" class="form-control" />
+                <input asp-for="ResidenceShehia" id="nresShehia" class="form-control" />
                 <span asp-validation-for="ResidenceShehia" class="text-danger"></span>
             </div>
 
@@ -226,7 +252,10 @@
                 <label asp-for="Occupation" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Occupation" class="form-control" />
+                @*<input asp-for="Occupation" class="form-control" />*@
+                <select asp-for="Occupation" asp-items="Html.GetEnumSelectList<Occupation>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Occupation" class="text-danger"></span>
             </div>
 
@@ -237,7 +266,11 @@
                 <label asp-for="ClientsCategory" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ClientsCategory" class="form-control" />
+                @*<input asp-for="ClientsCategory" class="form-control" />*@
+                <select asp-for="ClientsCategory" asp-items="Html.GetEnumSelectList<ClientCategory>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
+
                 <span asp-validation-for="ClientsCategory" class="text-danger"></span>
             </div>
 
@@ -248,7 +281,10 @@
                 <label asp-for="Disabled" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Disabled" class="form-control" />
+                @*<input asp-for="Disabled" class="form-control" />*@
+                <select asp-for="Disabled" asp-items="Html.GetEnumSelectList<Disabled>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Disabled" class="text-danger"></span>
             </div>
 
@@ -259,7 +295,10 @@
                 <label asp-for="HTCApproach" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="HTCApproach" class="form-control" />
+                @*<input asp-for="HTCApproach" class="form-control" />*@
+                <select asp-for="HTCApproach" asp-items="Html.GetEnumSelectList<HTSApproach>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="HTCApproach" class="text-danger"></span>
             </div>
 
@@ -270,7 +309,10 @@
                 <label asp-for="TypeofCounselling" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="TypeofCounselling" class="form-control" />
+                @*<input asp-for="TypeofCounselling" class="form-control" />*@
+                <select asp-for="TypeofCounselling" asp-items="Html.GetEnumSelectList<TypeOfCounselling>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="TypeofCounselling" class="text-danger"></span>
             </div>
 
@@ -281,7 +323,10 @@
                 <label asp-for="Reasonfortesting" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Reasonfortesting" class="form-control" />
+                @*<input asp-for="Reasonfortesting" class="form-control" />*@
+                <select asp-for="Reasonfortesting" asp-items="Html.GetEnumSelectList<ReasonTesting>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Reasonfortesting" class="text-danger"></span>
             </div>
 
@@ -292,7 +337,10 @@
                 <label asp-for="Result" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Result" class="form-control" />
+                @*<input asp-for="Result" class="form-control" />*@
+                <select asp-for="Result" asp-items="Html.GetEnumSelectList<Result>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Result" class="text-danger"></span>
             </div>
 
@@ -303,7 +351,9 @@
                 <label asp-for="DiscordantCouple" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="DiscordantCouple" class="form-control" />
+                <select asp-for="DiscordantCouple" asp-items="Html.GetEnumSelectList<DiscordantCouple>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="DiscordantCouple" class="text-danger"></span>
             </div>
 
@@ -325,7 +375,10 @@
                 <label asp-for="Receivedresult" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Receivedresult" class="form-control" />
+                @*<input asp-for="Receivedresult" class="form-control" />*@
+                <select asp-for="Receivedresult" asp-items="Html.GetEnumSelectList<ReceivedResult>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Receivedresult" class="text-danger"></span>
             </div>
 
@@ -369,13 +422,25 @@
                 <label asp-for="CTCNumber" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="CTCNumber" class="form-control" id="ctcno"/>
+                <input asp-for="CTCNumber" class="form-control" id="ctcno" />
                 <span asp-validation-for="CTCNumber" class="text-danger"></span>
             </div>
 
 
         </div>
-        
+
+        <div class="col-md-4" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="RemarksName" class="control-label"></label>
+            </div>
+            <div class="row">
+                <textarea asp-for="RemarksName" class="form-control"></textarea>
+                <span asp-validation-for="RemarksName" class="text-danger"></span>
+            </div>
+
+
+        </div>
+
         <div class="col-md-12" style="margin-top:10px;margin-bottom:10px;padding-left:5px;">
             <input type="submit" value="Save" class="btn btn-secondary text-danger"
                    style="background-color: bisque; margin:3px;padding:5px;" />
@@ -391,19 +456,52 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+   
+    <script type="text/javascript">
 
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#districtname').autocomplete({
-            source: '/api/districts/search'
+        $(document).ready(function () {
+            $('#ndistrictname').autocomplete({
+               
+                source: '/api/districts/searchdist'
+            });
         });
-    });
-    document.getElementById('ndate').focus();
 
-    $(document).ready(function () {
-        $('#ctcno').mask('00-00-0000-000000');
-       
-    });
-</script>
+        $(document).ready(function () {
+            //var s = $('#nresShehia').val();
+            minLength: 3,
+                $('#nresShehia').autocomplete({
+                    source: '/api/shehia/searchshe'
+                });
+        });
+
+
+            //$(document).ready(function () {
+            //    $('#nresShehia').autocomplete({
+            //        source: function (request, response) {
+            //            $.ajax({
+            //                url: "/api/shehia/searchshe",
+            //                type: "GET",
+            //                dataType: "json",
+            //                data: { Prefix: request.term },
+            //                success: function (data) {
+            //                    response($.map(data, function (item)
+            //                    {
+            //                        return { id: item.districtId, value: item.ShehiaName };
+            //                    }))
+            //                }
+            //            })
+
+            //        },
+
+            //        messages: {
+            //            noResults: "", results: ""
+            //        }
+            //    });
+            //})
+
+
+    </script>
+
 }

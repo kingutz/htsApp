@@ -5,9 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
 
-<h4>District</h4>
+
+
+<h6 class="text-secondary">New Record District</h6>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,7 +17,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="DistrictName" class="control-label"></label>
-                <input asp-for="DistrictName" class="form-control" />
+                <input asp-for="DistrictName" id="ndistrictname" class="form-control" />
                 <span asp-validation-for="DistrictName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -23,9 +25,9 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            
-           
-            
+
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -39,4 +41,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+
+
+    document.getElementById('ndistrictname').focus();
+
+
+</script>
 }

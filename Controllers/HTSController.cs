@@ -7,23 +7,73 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using htsApp.Data;
 using htsApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using htsApp.Services;
 
 namespace htsApp.Controllers
 {
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class HTSController : Controller
     {
+        
+        private readonly ILogger<ApplicationDbContext> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICurrentUserService currentUserService;
         private readonly ApplicationDbContext _context;
 
-        public HTSController(ApplicationDbContext context)
+        public HTSController(ApplicationDbContext context,RoleManager<IdentityRole> roleManager,
+            UserManager<ApplicationUser> userManager, ILogger<ApplicationDbContext> logger, 
+            ICurrentUserService currentUserService)
+       
         {
             _context = context;
-        }
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _logger = logger;
+            this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
 
+        }
+        private void PopulateDistrictDropDownList(object selectedNumber = null)
+        {
+            var dsnQuery = from d in _context.district
+                                       orderby d.DistrictName
+                                       select new {d.DistrictName };
+            ViewBag.dsn = new SelectList(dsnQuery, "DistrictName", "DistrictName", selectedNumber);
+        }
+        private void PopulateFacilityDropDownList(object selectedNumber = null)
+        {
+            var dsnQuery = from d in _context.Facility
+                           orderby d.FacilityName
+                           select new { d.FacilityName };
+            ViewBag.dsn = new SelectList(dsnQuery, "FacilityName", "FacilityName", selectedNumber);
+        }
+        private void PopulateShehiaDropDownList(object selectedNumber = null)
+        {
+            var dsnQuery = from d in _context.shehia
+                           orderby d.ShehiaName
+                           select new { d.ShehiaName };
+            ViewBag.dsn = new SelectList(dsnQuery, "ShehiaName", "ShehiaName", selectedNumber);
+        }
         // GET: HTS
         public async Task<IActionResult> Index()
         {
-            return View(await _context.HTS.ToListAsync());
+            bool isAdmin = User.IsInRole("admin") || User.IsInRole("analyst");
+
+            if (isAdmin)
+            {
+                
+                return View(await _context.HTS.ToListAsync());
+            }
+            else
+
+             return View(await _context.HTS.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync());
+
         }
+            //return View(await _context.HTS.ToListAsync());
+        
 
         // GET: HTS/Details/5
         public async Task<IActionResult> Details(long? id)
@@ -44,9 +94,18 @@ namespace htsApp.Controllers
         }
 
         // GET: HTS/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
+        //public IActionResult Create()
         {
-            return View();
+            PopulateDistrictDropDownList();
+            //PopulateFacilityDropDownList();
+            var hTSData = await _context.HTS.OrderByDescending(i=>i.ID).FirstOrDefaultAsync();
+            if (hTSData == null)
+            {
+                return NotFound();
+            }
+            return View(hTSData);
+            //return View();
         }
 
         // POST: HTS/Create
@@ -54,13 +113,17 @@ namespace htsApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NameofSite,OutreachName,District,Month,Year,OutreachOrganizer,PublicData,PrivateData,CSO,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia,ResidenceDistrict,Occupation,ClientsCategory,Disabled,HTCApproach,TypeofCounselling,Reasonfortesting,Result,DiscordantCouple,ResultPositiveType,Receivedresult,Noofmalecondomsissued,Nooffemalecondomsissued,Referredto,CTCNumber,ID")] HTSData hTSData)
+        public async Task<IActionResult> Create([Bind("NameofSite,OutreachName,District,Month,Year,OutreachOrganizer," +
+            "PublicData,PrivateData,CSO,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia," +
+            "ResidenceDistrict,Occupation,ClientsCategory,Disabled,HTCApproach,TypeofCounselling,Reasonfortesting," +
+            "Result,DiscordantCouple,ResultPositiveType,Receivedresult,Noofmalecondomsissued,Nooffemalecondomsissued," +
+            "Referredto,CTCNumber,ID,RemarksName")] HTSData hTSData)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(hTSData);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(hTSData);
         }
@@ -86,7 +149,11 @@ namespace htsApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("NameofSite,OutreachName,District,Month,Year,OutreachOrganizer,PublicData,PrivateData,CSO,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia,ResidenceDistrict,Occupation,ClientsCategory,Disabled,HTCApproach,TypeofCounselling,Reasonfortesting,Result,DiscordantCouple,ResultPositiveType,Receivedresult,Noofmalecondomsissued,Nooffemalecondomsissued,Referredto,CTCNumber,ID")] HTSData hTSData)
+        public async Task<IActionResult> Edit(long id, [Bind("NameofSite,OutreachName,District,Month,Year," +
+            "OutreachOrganizer,PublicData,PrivateData,CSO,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus," +
+            "ResidenceShehia,ResidenceDistrict,Occupation,ClientsCategory,Disabled,HTCApproach,TypeofCounselling," +
+            "Reasonfortesting,Result,DiscordantCouple,ResultPositiveType,Receivedresult,Noofmalecondomsissued," +
+            "Nooffemalecondomsissued,Referredto,CTCNumber,ID,RemarksName")] HTSData hTSData)
         {
             if (id != hTSData.ID)
             {

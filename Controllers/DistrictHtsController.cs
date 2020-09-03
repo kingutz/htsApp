@@ -7,22 +7,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using htsApp.Data;
 using htsApp.Models;
+using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using htsApp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace htsApp.Controllers
 {
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class DistrictHtsController : Controller
     {
+        private readonly ILogger<ApplicationDbContext> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICurrentUserService currentUserService;
         private readonly ApplicationDbContext _context;
 
-        public DistrictHtsController(ApplicationDbContext context)
+        public DistrictHtsController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager,
+            UserManager<ApplicationUser> userManager, ILogger<ApplicationDbContext> logger,
+            ICurrentUserService currentUserService)
+
         {
             _context = context;
-        }
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _logger = logger;
+            this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
 
+        }
+        
         // GET: DistrictHts
         public async Task<IActionResult> Index()
         {
+            
+
             return View(await _context.district.ToListAsync());
+           
         }
 
         // GET: DistrictHts/Details/5
@@ -54,6 +75,7 @@ namespace htsApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,analyst")]
         public async Task<IActionResult> Create([Bind("DistrictName,Description,ID")] District district)
         {
             if (ModelState.IsValid)
@@ -86,6 +108,7 @@ namespace htsApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,analyst")]
         public async Task<IActionResult> Edit(long id, [Bind("DistrictName,Description,ID")] District district)
         {
             if (id != district.ID)
@@ -137,6 +160,7 @@ namespace htsApp.Controllers
         // POST: DistrictHts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,analyst")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var district = await _context.district.FindAsync(id);
@@ -149,5 +173,14 @@ namespace htsApp.Controllers
         {
             return _context.district.Any(e => e.ID == id);
         }
+
+        [HttpGet]
+        public JsonResult CreateJson(string Prefix)
+        {
+            var dist = _context.district.Where(i => i.DistrictName.StartsWith(Prefix)).Select(g=> new {g.DistrictName }).ToList();
+            return Json(dist);
+        }
+
+
     }
 }

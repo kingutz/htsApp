@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace htsApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         private readonly ICurrentUserService currentUserService;
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService)
@@ -54,6 +54,7 @@ namespace htsApp.Data
                 item.Property(nameof(entidad.CreatedByUser)).IsModified = false;
             }
         }
+        public DbSet<htsApp.Models.Facility> Facility { get; set; }
 
        
     }

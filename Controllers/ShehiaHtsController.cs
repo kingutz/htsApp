@@ -7,18 +7,41 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using htsApp.Data;
 using htsApp.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using htsApp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace htsApp.Controllers
 {
+    [Authorize(Roles = "admin,analyst,dataentry,dataclerk")]
     public class ShehiaHtsController : Controller
     {
+        private readonly ILogger<ApplicationDbContext> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICurrentUserService currentUserService;
         private readonly ApplicationDbContext _context;
 
-        public ShehiaHtsController(ApplicationDbContext context)
+        public ShehiaHtsController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager,
+            UserManager<ApplicationUser> userManager, ILogger<ApplicationDbContext> logger,
+            ICurrentUserService currentUserService)
+
         {
             _context = context;
-        }
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _logger = logger;
+            this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
 
+        }
+        private void PopulateDistrictDropDownList(object selectedNumber = null)
+        {
+            var dsnQuery = from d in _context.district
+                           orderby d.DistrictName
+                           select new {d.ID, d.DistrictName };
+            ViewBag.dsn = new SelectList(dsnQuery, "ID", "DistrictName", selectedNumber);
+        }
         // GET: ShehiaHts
         public async Task<IActionResult> Index()
         {
@@ -46,6 +69,7 @@ namespace htsApp.Controllers
         // GET: ShehiaHts/Create
         public IActionResult Create()
         {
+            PopulateDistrictDropDownList();
             return View();
         }
 
@@ -54,6 +78,7 @@ namespace htsApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,analyst")]
         public async Task<IActionResult> Create([Bind("districtId,ShehiaName,Description,ID")] Shehia shehia)
         {
             if (ModelState.IsValid)
@@ -86,6 +111,7 @@ namespace htsApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,analyst")]
         public async Task<IActionResult> Edit(long id, [Bind("districtId,ShehiaName,Description,ID")] Shehia shehia)
         {
             if (id != shehia.ID)
@@ -137,6 +163,7 @@ namespace htsApp.Controllers
         // POST: ShehiaHts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,analyst")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var shehia = await _context.shehia.FindAsync(id);

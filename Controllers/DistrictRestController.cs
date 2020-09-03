@@ -23,8 +23,8 @@ namespace htsApp.Controllers
 
 
         [Produces("application/json")]
-        [HttpGet("search")]
-        public async Task<IActionResult> Search()
+        [HttpGet("searchdist")]
+        public async Task<IActionResult> Districtsrc()
         {
             try
             {
@@ -37,6 +37,41 @@ namespace htsApp.Controllers
                 return BadRequest();
             }
         }
+        [Produces("application/json")]
+        [HttpGet("search")]
+        public async Task<IActionResult> Search()
+        {
+            try
+            {
+                string term = HttpContext.Request.Query["term"].ToString();
+                var names = await _context.district.Where(p => p.DistrictName.Contains(term)).Select(p => p.DistrictName).ToListAsync();
+                return Ok(names);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        //[Produces("application/json")]
+        //[HttpGet("[id]")]
+        //public async Task<IActionResult> DstShehia(long? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var term = HttpContext.Request.Query["term"];
+        //    var hTSData = await _context.district.FirstOrDefaultAsync(m => m.ID == id);
+        //    if (hTSData == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(hTSData);
+        //}
+
+
         // GET: api/DistrictRest
         [HttpGet]
         public async Task<ActionResult<IEnumerable<District>>> Getdistrict()

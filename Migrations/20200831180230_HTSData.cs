@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace htsApp.Migrations
 {
-    public partial class htsinitial : Migration
+    public partial class HTSData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -89,24 +89,25 @@ namespace htsApp.Migrations
                     ClientCode = table.Column<string>(nullable: true),
                     TypeofAttendance = table.Column<int>(nullable: false),
                     Age = table.Column<int>(nullable: true),
-                    Sex = table.Column<string>(nullable: false),
-                    MaritalStatus = table.Column<string>(nullable: false),
+                    Sex = table.Column<int>(nullable: false),
+                    MaritalStatus = table.Column<int>(nullable: false),
                     ResidenceShehia = table.Column<string>(nullable: false),
                     ResidenceDistrict = table.Column<string>(nullable: false),
-                    Occupation = table.Column<string>(nullable: false),
+                    Occupation = table.Column<int>(nullable: false),
                     ClientsCategory = table.Column<int>(nullable: false),
                     Disabled = table.Column<int>(nullable: false),
                     HTCApproach = table.Column<int>(nullable: false),
                     TypeofCounselling = table.Column<int>(nullable: false),
                     Reasonfortesting = table.Column<int>(nullable: false),
-                    Result = table.Column<string>(nullable: false),
-                    DiscordantCouple = table.Column<string>(nullable: true),
+                    Result = table.Column<int>(nullable: false),
+                    DiscordantCouple = table.Column<int>(nullable: false),
                     ResultPositiveType = table.Column<string>(nullable: true),
-                    Receivedresult = table.Column<string>(nullable: true),
+                    Receivedresult = table.Column<int>(nullable: false),
                     Noofmalecondomsissued = table.Column<int>(nullable: true),
                     Nooffemalecondomsissued = table.Column<int>(nullable: true),
                     Referredto = table.Column<string>(nullable: true),
-                    CTCNumber = table.Column<string>(nullable: true)
+                    CTCNumber = table.Column<string>(nullable: true),
+                    RemarksName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
