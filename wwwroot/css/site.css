@@ -74,3 +74,31 @@ body {
     background-color: bisque;
     margin:3px;padding:5px;
 }
+.ui-menu-item {
+    /* IE10 fix to remove bullets from showing outside of div*/
+    list-style-image: url(data:0);
+}
+ul.ui-autocomplete {
+    list-style: none;
+    background-color:aliceblue;
+    width:100px;
+}
+.ui-autocomplete li.ui-menu-item:hover {
+    background: aqua;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #444;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}

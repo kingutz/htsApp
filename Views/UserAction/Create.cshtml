@@ -1,0 +1,42 @@
+﻿@model IEnumerable<htsApp.Models.UserMgt>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a asp-action="Index">Back to user action list</a>
+
+<div class="container">
+    <div class="row flex-row flex-nowrap text-success">
+
+        <div class="col-md-4 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.UserName)
+        </div>
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.Created)
+        </div>
+        <div class="col-md-2 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.Edited)
+        </div>
+
+
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row flex-row flex-nowrap">
+
+            <div class="col-md-4 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.UserName)
+            </div>
+            <div class="col-md-2 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.Created)
+            </div>
+            <div class="col-md-2 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.Edited)
+            </div>
+
+        </div>
+    }
+</div>

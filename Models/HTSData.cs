@@ -34,14 +34,17 @@ using System.ComponentModel.DataAnnotations;
         public string OutreachOrganizer { get; set; }
 
 
-        [Display(Name = "Public")]
-        public bool PublicData { get; set; }
+        [Display(Name = "Ownership")]
+        public Ownership Ownership { get; set; }
+
+        //[Display(Name = "Public")]
+        //public bool PublicData { get; set; }
 
 
-        [Display(Name = "Private")]
-        public bool PrivateData { get; set; }
+        //[Display(Name = "Private")]
+        //public bool PrivateData { get; set; }
 
-        public bool CSO { get; set; }
+        //public bool CSO { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -106,7 +109,7 @@ using System.ComponentModel.DataAnnotations;
         public DiscordantCouple DiscordantCouple { get; set; }
 
         [Display(Name = "Result Positive type")]
-        public string ResultPositiveType { get; set; }
+        public ResultPositiveType ResultPositiveType { get; set; }
 
 
         [Display(Name = "Received result")]
@@ -294,5 +297,22 @@ using System.ComponentModel.DataAnnotations;
 
 
     }
-
+    public enum Ownership
+    {
+        [Display(Name = "1.Public")]
+        PublicData = 1,
+        [Display(Name = "2.Private")]
+        PrivateData = 2,
+        [Display(Name = "3.CSO")]
+        CSO =3
+    }
+    
+         public enum ResultPositiveType
+    {
+        [Display(Name = "1.New case")]
+        Newcase = 1,
+        [Display(Name = "2.Known HIV case")]
+        PrivateData = 2
+       
+    }
 }

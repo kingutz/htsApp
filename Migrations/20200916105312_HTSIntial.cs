@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace htsApp.Migrations
 {
-    public partial class HTSData : Migration
+    public partial class HTSIntial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,8 @@ namespace htsApp.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,6 +67,25 @@ namespace htsApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Facility",
+                columns: table => new
+                {
+                    ID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedByUser = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
+                    ModifiedByUser = table.Column<string>(nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(nullable: false),
+                    Edited = table.Column<bool>(nullable: false),
+                    FacilityName = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Facility", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HTS",
                 columns: table => new
                 {
@@ -82,9 +102,7 @@ namespace htsApp.Migrations
                     Month = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     Year = table.Column<int>(nullable: true),
                     OutreachOrganizer = table.Column<string>(nullable: true),
-                    PublicData = table.Column<bool>(nullable: false),
-                    PrivateData = table.Column<bool>(nullable: false),
-                    CSO = table.Column<bool>(nullable: false),
+                    Ownership = table.Column<int>(nullable: false),
                     DateData = table.Column<DateTime>(nullable: true),
                     ClientCode = table.Column<string>(nullable: true),
                     TypeofAttendance = table.Column<int>(nullable: false),
@@ -160,8 +178,8 @@ namespace htsApp.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -205,8 +223,8 @@ namespace htsApp.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -307,6 +325,9 @@ namespace htsApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Facility");
 
             migrationBuilder.DropTable(
                 name: "HTS");

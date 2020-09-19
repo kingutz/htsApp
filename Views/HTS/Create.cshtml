@@ -8,12 +8,14 @@
 
 
 
+<h4 class="text-secondary">ZIHHTLP HIV TESTING SERVICES DATABASE</h4>
+
+<hr />
+<h6 class="text-secondary">New Record</h6>
 <hr />
 
-
-
 <form asp-action="Create">
-    <div class="row text-secondary" style="background-color:aqua;">
+    <div class="row text-muted" style="background-color:aqua;">
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -24,11 +26,11 @@
 
                 </div>
                 <div class="row">
-                    <input asp-for="NameofSite" class="form-control" />
+                    <input asp-for="NameofSite" id="nsitename" class="form-control" />
                     <span asp-validation-for="NameofSite" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-3" style="margin:2px;">
+            <div class="col-md-4" style="margin:2px;">
                 <div class="row">
                     <label asp-for="OutreachName" class="control-label"></label>
                 </div>
@@ -39,12 +41,12 @@
 
 
             </div>
-            <div class="col-md-3" style="margin:2px;">
+            <div class="col-md-4" style="margin:2px;">
                 <div class="row">
                     <label asp-for="District" class="control-label"></label>
                 </div>
                 <div class="row">
-                    <input asp-for="District" id="ndistrictname" aria-label="" class="form-control" />
+                    <input asp-for="District" id="ndistrictname" aria-label="" class="form-control ui-state-hover" />
 
                     @*<input type="text" id="ndistrictname" class="form-control" />*@
                     @*<select asp-for="District" class="form-control" asp-items="ViewBag.dsn">
@@ -55,7 +57,7 @@
                 </div>
 
             </div>
-            <div class="col-md-2" style="margin:2px;">
+            <div class="col-md-3" style="margin:2px;">
                 <div class="row">
                     <label asp-for="Month" class="control-label"></label>
                 </div>
@@ -93,7 +95,21 @@
 
 
             </div>
+
             <div class="col-md-2" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="Ownership" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <select asp-for="Ownership" asp-items="Html.GetEnumSelectList<Ownership>()" class="form-control">
+                        <option selected="selected" value=""></option>
+                    </select>
+                    <span asp-validation-for="Ownership" class="text-danger"></span>
+                </div>
+
+
+            </div>
+            <div class="col-md-4" style="margin:2px;">
                 <div class="row">
                     <label asp-for="OutreachOrganizer" class="control-label"></label>
                 </div>
@@ -105,49 +121,49 @@
 
             </div>
 
-            <div class="col-md-6" style="margin-top:30px;margin-left:10px;padding:5px;">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-md-3">
-                                @Html.DisplayNameFor(model => model.PublicData)
+            @*<div class="col-md-6" style="margin-top:30px;margin-left:10px;padding:5px;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.DisplayNameFor(model => model.PublicData)
+                                </div>
+                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                    <input class="form-check-input" asp-for="PublicData" />
+                                </div>
                             </div>
-                            <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
-                                <input class="form-check-input" asp-for="PublicData" />
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.DisplayNameFor(model => model.PrivateData)
+                                </div>
+                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                    <input class="form-check-input" asp-for="PrivateData" />
+                                </div>
                             </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.DisplayNameFor(model => model.CSO)
+                                </div>
+                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                    <input class="form-check-input" asp-for="CSO" />
+                                </div>
+                            </div>
+
                         </div>
 
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-md-3">
-                                @Html.DisplayNameFor(model => model.PrivateData)
-                            </div>
-                            <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
-                                <input class="form-check-input" asp-for="PrivateData" />
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-md-3">
-                                @Html.DisplayNameFor(model => model.CSO)
-                            </div>
-                            <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
-                                <input class="form-check-input" asp-for="CSO" />
-                            </div>
-                        </div>
 
                     </div>
 
 
 
-                </div>
-
-
-
-            </div>
+                </div>*@
 
         </div>
         <div class="col-md-3" style="margin-left:12px;margin-top:2px;">
@@ -211,7 +227,7 @@
 
 
         </div>
-        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
             <div class="row">
                 <label asp-for="MaritalStatus" class="control-label"></label>
             </div>
@@ -241,13 +257,13 @@
                 <label asp-for="ResidenceDistrict" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ResidenceDistrict" class="form-control" />
+                <input asp-for="ResidenceDistrict" id="nresDistrict" class="form-control" />
                 <span asp-validation-for="ResidenceDistrict" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-2" style="margin:2px">
+        <div class="col-md-3" style="margin:2px">
             <div class="row">
                 <label asp-for="Occupation" class="control-label"></label>
             </div>
@@ -364,7 +380,10 @@
                 <label asp-for="ResultPositiveType" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ResultPositiveType" class="form-control" />
+                @*<input asp-for="ResultPositiveType" class="form-control" />*@
+                <select asp-for="ResultPositiveType" asp-items="Html.GetEnumSelectList<ResultPositiveType>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="ResultPositiveType" class="text-danger"></span>
             </div>
 
@@ -442,66 +461,103 @@
         </div>
 
         <div class="col-md-12" style="margin-top:10px;margin-bottom:10px;padding-left:5px;">
-            <input type="submit" value="Save" class="btn btn-secondary text-danger"
-                   style="background-color: bisque; margin:3px;padding:5px;" />
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="submit" value="Save" class="btn btn-secondary text-danger"
+                           style="background-color: bisque; margin:3px;padding:5px;" />
+                </div>
+                <div class="col-md-3">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </form>
 
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-   
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
             $('#ndistrictname').autocomplete({
-               
+
                 source: '/api/districts/searchdist'
             });
         });
-
         $(document).ready(function () {
-            //var s = $('#nresShehia').val();
-            minLength: 3,
-                $('#nresShehia').autocomplete({
-                    source: '/api/shehia/searchshe'
-                });
+            $('#nsitename').autocomplete({
+
+                source: '/api/facilities/searchfac'
+            });
         });
+        $(document).ready(function () {
+            $('#nresShehia').autocomplete({
 
+                source: '/api/shehia/searchshe'
+            });
+        });
+        $(document).ready(function () {
+            $('#nresDistrict').autocomplete({
 
+                source: '/api/districts/searchdist'
+            });
+        });
             //$(document).ready(function () {
-            //    $('#nresShehia').autocomplete({
-            //        source: function (request, response) {
-            //            $.ajax({
-            //                url: "/api/shehia/searchshe",
-            //                type: "GET",
-            //                dataType: "json",
-            //                data: { Prefix: request.term },
-            //                success: function (data) {
-            //                    response($.map(data, function (item)
-            //                    {
-            //                        return { id: item.districtId, value: item.ShehiaName };
-            //                    }))
-            //                }
-            //            })
+            //    //var s = $('#nresShehia').val();
+            //    minLength: 3,
+            //        $('#nresShehia').autocomplete({
+            //            source: '/api/shehia/searchshe',
 
-            //        },
-
-            //        messages: {
-            //            noResults: "", results: ""
-            //        }
-            //    });
-            //})
+            //            select: function (event, ui) {
+            //                $(this).val(ui.item.label)
+            //                $("#nresShehia").val(ui.item.value);
+            //                return false;
+            //            }
+            //        });
+            //});
 
 
+                //$(document).ready(function () {
+                //    $('#nresShehia').autocomplete({
+                //        source: function (request, response) {
+                //            $.ajax({
+                //                url: "/api/shehia/searchshe",
+                //                type: "POST",
+                //                dataType: "json",
+                //                data: { Prefix: request.term },
+                //                success: function (data) {
+                //                    response($.map(data, function (item)
+                //                    {
+                //                        return { value: item.districtId, label: item.ShehiaName };
+                //                    }))
+                //                }
+                //            })
+
+                //        },
+                //        select: function (event, ui) {
+                //            $(this).val(ui.item.value)
+                //            $("#nresShehia").val(ui.item.id);
+                //        },
+                //        messages: {
+                //            noResults: "", results: ""
+                //        }
+                //    });
+                //})
+
+            //$j('.ui-autocomplete').on('mouseover', '.ui-menu-item', function () {
+            //    $(this).find('a').click();
+            //});
     </script>
 
 }

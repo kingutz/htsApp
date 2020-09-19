@@ -5,183 +5,562 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h4 class="text-secondary">ZIHHTLP HIV TESTING SERVICES DATABASE</h4>
 
-<h4>HTSData</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NameofSite" class="control-label"></label>
-                <input asp-for="NameofSite" class="form-control" />
-                <span asp-validation-for="NameofSite" class="text-danger"></span>
+<h6 class="text-secondary">Edit Record</h6>
+<hr />
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="ID" />
+    <div class="row text-secondary" style="background-color:aqua;">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row" style="margin:3px;padding:5px;">
+            <div class="col-md-3" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="NameofSite" class="control-label "></label>
+
+                </div>
+                <div class="row">
+                    <input asp-for="NameofSite" id="esitename" class="form-control" />
+                    <span asp-validation-for="NameofSite" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="OutreachName" class="control-label"></label>
-                <input asp-for="OutreachName" class="form-control" />
-                <span asp-validation-for="OutreachName" class="text-danger"></span>
+            <div class="col-md-4" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="OutreachName" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="OutreachName" class="form-control" />
+                    <span asp-validation-for="OutreachName" class="text-danger"></span>
+                </div>
+
+
             </div>
-            <div class="form-group">
-                <label asp-for="District" class="control-label"></label>
-                <input asp-for="District" class="form-control" />
-                <span asp-validation-for="District" class="text-danger"></span>
+            <div class="col-md-4" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="District" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="District" id="edistrictname" aria-label="" class="form-control ui-state-hover" />
+
+                    @*<input type="text" id="ndistrictname" class="form-control" />*@
+                    @*<select asp-for="District" class="form-control" asp-items="ViewBag.dsn">
+                            <option value=""></option>
+                        </select>*@
+
+                    <span asp-validation-for="District" class="text-danger"></span>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="Month" class="control-label"></label>
-                <input asp-for="Month" class="form-control" />
-                <span asp-validation-for="Month" class="text-danger"></span>
+            <div class="col-md-3" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="Month" class="control-label"></label>
+                </div>
+                <div class="row">
+                    @*<input asp-for="Month" class="form-control" />*@
+                    <select asp-for="Month" class="form-control">
+                        <option value=""></option>
+                        <option>JANUARY</option>
+                        <option>FEBRUARY</option>
+                        <option>MARCH</option>
+                        <option>APRIL</option>
+                        <option>MAY</option>
+                        <option>JUNE</option>
+                        <option>JULY</option>
+                        <option>AUGUST</option>
+                        <option>SEPTEMBER</option>
+                        <option>OCTOBER</option>
+                        <option>NOVEMBER</option>
+                        <option>DECEMBER</option>
+
+
+                    </select>
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" />
-                <span asp-validation-for="Year" class="text-danger"></span>
+            <div class="col-md-2" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="Year" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+
             </div>
-            <div class="form-group">
-                <label asp-for="OutreachOrganizer" class="control-label"></label>
-                <input asp-for="OutreachOrganizer" class="form-control" />
-                <span asp-validation-for="OutreachOrganizer" class="text-danger"></span>
+
+            <div class="col-md-2" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="Ownership" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <select asp-for="Ownership" asp-items="Html.GetEnumSelectList<Ownership>()" class="form-control">
+                        <option selected="selected" value=""></option>
+                    </select>
+                    <span asp-validation-for="Ownership" class="text-danger"></span>
+                </div>
+
+
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="PublicData" /> @Html.DisplayNameFor(model => model.PublicData)
-                </label>
+            <div class="col-md-4" style="margin:2px;">
+                <div class="row">
+                    <label asp-for="OutreachOrganizer" class="control-label"></label>
+                </div>
+                <div class="row">
+                    <input asp-for="OutreachOrganizer" class="form-control" />
+                    <span asp-validation-for="OutreachOrganizer" class="text-danger"></span>
+                </div>
+
+
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="PrivateData" /> @Html.DisplayNameFor(model => model.PrivateData)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="CSO" /> @Html.DisplayNameFor(model => model.CSO)
-                </label>
-            </div>
-            <div class="form-group">
+
+            @*<div class="col-md-6" style="margin-top:30px;margin-left:10px;padding:5px;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.DisplayNameFor(model => model.PublicData)
+                                </div>
+                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                    <input class="form-check-input" asp-for="PublicData" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.DisplayNameFor(model => model.PrivateData)
+                                </div>
+                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                    <input class="form-check-input" asp-for="PrivateData" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.DisplayNameFor(model => model.CSO)
+                                </div>
+                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                                    <input class="form-check-input" asp-for="CSO" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>*@
+
+        </div>
+        <div class="col-md-3" style="margin-left:12px;margin-top:2px;">
+            <div class="row">
                 <label asp-for="DateData" class="control-label"></label>
-                <input asp-for="DateData" class="form-control" />
+            </div>
+            <div class="row">
+                <input asp-for="DateData" class="form-control" id="ndate" />
                 <span asp-validation-for="DateData" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
                 <label asp-for="ClientCode" class="control-label"></label>
-                <input asp-for="ClientCode" class="form-control" />
+            </div>
+            <div class="row">
+                <input asp-for="ClientCode" class="form-control" id="nclientcode" />
                 <span asp-validation-for="ClientCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
                 <label asp-for="TypeofAttendance" class="control-label"></label>
-                <input asp-for="TypeofAttendance" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="TypeofAttendance" class="form-control" />*@
+                <select asp-for="TypeofAttendance" asp-items="Html.GetEnumSelectList<TypeofAttendance>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="TypeofAttendance" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
                 <label asp-for="Age" class="control-label"></label>
+            </div>
+            <div class="row">
                 <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px;">
+            <div class="row">
                 <label asp-for="Sex" class="control-label"></label>
-                <input asp-for="Sex" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="Sex" class="form-control" />*@
+                <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Sex" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+            <div class="row">
                 <label asp-for="MaritalStatus" class="control-label"></label>
-                <input asp-for="MaritalStatus" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="MaritalStatus" class="form-control" />*@
+                <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="ResidenceShehia" class="control-label"></label>
-                <input asp-for="ResidenceShehia" class="form-control" />
+            </div>
+            <div class="row">
+                <input asp-for="ResidenceShehia" id="eresShehia" class="form-control" />
                 <span asp-validation-for="ResidenceShehia" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="ResidenceDistrict" class="control-label"></label>
-                <input asp-for="ResidenceDistrict" class="form-control" />
+            </div>
+            <div class="row">
+                <input asp-for="ResidenceDistrict" id="eresDistrict" class="form-control" />
                 <span asp-validation-for="ResidenceDistrict" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="Occupation" class="control-label"></label>
-                <input asp-for="Occupation" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="Occupation" class="form-control" />*@
+                <select asp-for="Occupation" asp-items="Html.GetEnumSelectList<Occupation>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Occupation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+            <div class="row">
                 <label asp-for="ClientsCategory" class="control-label"></label>
-                <input asp-for="ClientsCategory" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="ClientsCategory" class="form-control" />*@
+                <select asp-for="ClientsCategory" asp-items="Html.GetEnumSelectList<ClientCategory>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
+
                 <span asp-validation-for="ClientsCategory" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
                 <label asp-for="Disabled" class="control-label"></label>
-                <input asp-for="Disabled" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="Disabled" class="form-control" />*@
+                <select asp-for="Disabled" asp-items="Html.GetEnumSelectList<Disabled>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Disabled" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
                 <label asp-for="HTCApproach" class="control-label"></label>
-                <input asp-for="HTCApproach" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="HTCApproach" class="form-control" />*@
+                <select asp-for="HTCApproach" asp-items="Html.GetEnumSelectList<HTSApproach>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="HTCApproach" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
                 <label asp-for="TypeofCounselling" class="control-label"></label>
-                <input asp-for="TypeofCounselling" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="TypeofCounselling" class="form-control" />*@
+                <select asp-for="TypeofCounselling" asp-items="Html.GetEnumSelectList<TypeOfCounselling>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="TypeofCounselling" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="Reasonfortesting" class="control-label"></label>
-                <input asp-for="Reasonfortesting" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="Reasonfortesting" class="form-control" />*@
+                <select asp-for="Reasonfortesting" asp-items="Html.GetEnumSelectList<ReasonTesting>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Reasonfortesting" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+            <div class="row">
                 <label asp-for="Result" class="control-label"></label>
-                <input asp-for="Result" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="Result" class="form-control" />*@
+                <select asp-for="Result" asp-items="Html.GetEnumSelectList<Result>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Result" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="DiscordantCouple" class="control-label"></label>
-                <input asp-for="DiscordantCouple" class="form-control" />
+            </div>
+            <div class="row">
+                <select asp-for="DiscordantCouple" asp-items="Html.GetEnumSelectList<DiscordantCouple>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="DiscordantCouple" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="ResultPositiveType" class="control-label"></label>
+            </div>
+            <div class="row">
                 <input asp-for="ResultPositiveType" class="form-control" />
                 <span asp-validation-for="ResultPositiveType" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="Receivedresult" class="control-label"></label>
-                <input asp-for="Receivedresult" class="form-control" />
+            </div>
+            <div class="row">
+                @*<input asp-for="Receivedresult" class="form-control" />*@
+                <select asp-for="Receivedresult" asp-items="Html.GetEnumSelectList<ReceivedResult>()" class="form-control">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Receivedresult" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+            <div class="row">
                 <label asp-for="Noofmalecondomsissued" class="control-label"></label>
+            </div>
+            <div class="row">
                 <input asp-for="Noofmalecondomsissued" class="form-control" />
                 <span asp-validation-for="Noofmalecondomsissued" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="Nooffemalecondomsissued" class="control-label"></label>
+            </div>
+            <div class="row">
                 <input asp-for="Nooffemalecondomsissued" class="form-control" />
                 <span asp-validation-for="Nooffemalecondomsissued" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-2" style="margin:2px">
+            <div class="row">
                 <label asp-for="Referredto" class="control-label"></label>
+            </div>
+            <div class="row">
                 <input asp-for="Referredto" class="form-control" />
                 <span asp-validation-for="Referredto" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+
+        </div>
+        <div class="col-md-3" style="margin:2px">
+            <div class="row">
                 <label asp-for="CTCNumber" class="control-label"></label>
-                <input asp-for="CTCNumber" class="form-control" />
+            </div>
+            <div class="row">
+                <input asp-for="CTCNumber" class="form-control" id="ctcno" />
                 <span asp-validation-for="CTCNumber" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="ID" />
-            
-            
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+
+        </div>
+
+        <div class="col-md-4" style="margin-left:12px;margin-top:2px">
+            <div class="row">
+                <label asp-for="RemarksName" class="control-label"></label>
             </div>
-        </form>
+            <div class="row">
+                <textarea asp-for="RemarksName" class="form-control"></textarea>
+                <span asp-validation-for="RemarksName" class="text-danger"></span>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-12" style="margin-top:10px;margin-bottom:10px;padding-left:5px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="submit" value="Save" class="btn btn-secondary text-danger"
+                           style="background-color: bisque; margin:3px;padding:5px;" />
+                </div>
+                <div class="col-md-3">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-</div>
+</form>
+
+
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#edistrictname').autocomplete({
+
+                source: '/api/districts/searchdist'
+            });
+        });
+        $(document).ready(function () {
+            $('#esitename').autocomplete({
+
+                source: '/api/facilities/searchfac'
+            });
+        });
+        $(document).ready(function () {
+            $('#eresShehia').autocomplete({
+
+                source: '/api/shehia/searchshe'
+            });
+        });
+        $(document).ready(function () {
+            $('#eresDistrict').autocomplete({
+
+                source: '/api/districts/searchdist'
+            });
+        });
+            //$(document).ready(function () {
+            //    //var s = $('#nresShehia').val();
+            //    minLength: 3,
+            //        $('#nresShehia').autocomplete({
+            //            source: '/api/shehia/searchshe',
+
+            //            select: function (event, ui) {
+            //                $(this).val(ui.item.label)
+            //                $("#nresShehia").val(ui.item.value);
+            //                return false;
+            //            }
+            //        });
+            //});
+
+
+                //$(document).ready(function () {
+                //    $('#nresShehia').autocomplete({
+                //        source: function (request, response) {
+                //            $.ajax({
+                //                url: "/api/shehia/searchshe",
+                //                type: "POST",
+                //                dataType: "json",
+                //                data: { Prefix: request.term },
+                //                success: function (data) {
+                //                    response($.map(data, function (item)
+                //                    {
+                //                        return { value: item.districtId, label: item.ShehiaName };
+                //                    }))
+                //                }
+                //            })
+
+                //        },
+                //        select: function (event, ui) {
+                //            $(this).val(ui.item.value)
+                //            $("#nresShehia").val(ui.item.id);
+                //        },
+                //        messages: {
+                //            noResults: "", results: ""
+                //        }
+                //    });
+                //})
+
+            //$j('.ui-autocomplete').on('mouseover', '.ui-menu-item', function () {
+            //    $(this).find('a').click();
+            //});
+    </script>
+
+}
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@

@@ -24,6 +24,7 @@ namespace htsApp.Data
         public DbSet<HTSData> HTS { get; set; }
         public DbSet<District> district { get; set; }
         public DbSet<Shehia> shehia { get; set; }
+        public DbSet<Facility> Facility { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -54,7 +55,7 @@ namespace htsApp.Data
                 item.Property(nameof(entidad.CreatedByUser)).IsModified = false;
             }
         }
-        public DbSet<htsApp.Models.Facility> Facility { get; set; }
+       
 
        
     }

@@ -57,23 +57,73 @@ namespace htsApp.Controllers
                            select new { d.ShehiaName };
             ViewBag.dsn = new SelectList(dsnQuery, "ShehiaName", "ShehiaName", selectedNumber);
         }
+
         // GET: HTS
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter,
+            string searchString, int? pageNumber)
         {
             bool isAdmin = User.IsInRole("admin") || User.IsInRole("analyst");
 
-            if (isAdmin)
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
             {
-                
-                return View(await _context.HTS.ToListAsync());
+                pageNumber = 1;
             }
             else
+            {
+                searchString = currentFilter;
+            }
 
-             return View(await _context.HTS.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync());
+            ViewData["CurrentFilter"] = searchString;
+
+            var hts = _context.HTS.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername());
+
+            //var hts = from b in _context.HTS select b;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                hts = hts.Where(s => s.ClientCode.Contains(searchString) || s.ResidenceShehia.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    hts = hts.OrderByDescending(s => s.ResidenceShehia);
+                    break;
+                case "Date":
+                    hts = hts.OrderBy(s => s.ClientCode);
+                    break;
+                case "date_desc":
+                    hts = hts.OrderByDescending(s => s.ClientCode);
+                    break;
+                default:
+                    hts = hts.OrderBy(s => s.CreatedDate);
+                    break;
+            }
+
+            //    if (isAdmin)
+            //    {
+            //        return View(await _context.HTS.ToListAsync());
+
+
+            //    }
+            //    else
+
+            //        var hts = _context.HTS.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername());
+            //}
+            int pageSize = 40;
+            return View(await PaginatedList<HTSData>.CreateAsync(hts.AsNoTracking(), pageNumber ?? 1, pageSize));
 
         }
-            //return View(await _context.HTS.ToListAsync());
-        
+
+
+        //return View(await _context.HTS.ToListAsync());
+
 
         // GET: HTS/Details/5
         public async Task<IActionResult> Details(long? id)
@@ -94,18 +144,18 @@ namespace htsApp.Controllers
         }
 
         // GET: HTS/Create
-        public async Task<IActionResult> Create()
-        //public IActionResult Create()
+        //public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            PopulateDistrictDropDownList();
-            //PopulateFacilityDropDownList();
-            var hTSData = await _context.HTS.OrderByDescending(i=>i.ID).FirstOrDefaultAsync();
-            if (hTSData == null)
-            {
-                return NotFound();
-            }
-            return View(hTSData);
-            //return View();
+        //    PopulateDistrictDropDownList();
+        //    //PopulateFacilityDropDownList();
+        //    var hTSData = await _context.HTS.OrderByDescending(i=>i.ID).FirstOrDefaultAsync();
+        //    if (hTSData == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(hTSData);
+            return View();
         }
 
         // POST: HTS/Create

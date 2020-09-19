@@ -33,5 +33,15 @@ namespace htsApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult UseDataFromServer()
+        {
+            return View();
+        }
+
+        public JsonResult JsonData()
+        {
+            var data = ModelHelper.MultiLineData();
+            return Json(data);
+        }
     }
 }

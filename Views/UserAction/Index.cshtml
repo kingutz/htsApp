@@ -1,0 +1,75 @@
+﻿@model IEnumerable<htsApp.Models.HTSData>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+
+    <a asp-action="Create">Users Action</a>
+</div>
+
+
+<div class="container">
+    <div class="row flex-row flex-nowrap text-success">
+        @*<div class="col-md-3 card card-block card-primary card-inverse invisible">
+            </div>*@
+        <div class="col-md-1 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.ID)
+        </div>
+        <div class="col-md-3 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.CreatedByUser)
+        </div>
+        <div class="col-md-4 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </div>
+        <div class="col-md-3 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.ModifiedByUser)
+        </div>
+        <div class="col-md-4 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </div>
+        <div class="col-md-1 card card-block card-primary card-inverse">
+            @Html.DisplayNameFor(model => model.Edited)
+        </div>
+
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row flex-row flex-nowrap">
+
+            <div class="col-md-1 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.ID)
+            </div>
+            
+            <div class="col-md-3 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.CreatedByUser)
+            </div>
+            <div class="col-md-4 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </div>
+            <div class="col-md-3 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.ModifiedByUser)
+            </div>
+            <div class="col-md-4 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </div>
+            <div class="col-md-1 card card-block card-primary card-inverse">
+                @Html.DisplayFor(modelItem => item.Edited)
+            </div>
+            <div class="col-md-3 ">
+                <div class="row">
+                    <div class="col-md-3 btn-success ">
+                        <a class="text-white" asp-action="Details" asp-route-id="@item.ID">View</a>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>

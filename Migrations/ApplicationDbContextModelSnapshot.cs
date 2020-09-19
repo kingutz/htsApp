@@ -97,12 +97,10 @@ namespace htsApp.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -139,12 +137,10 @@ namespace htsApp.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -255,6 +251,39 @@ namespace htsApp.Migrations
                     b.ToTable("district");
                 });
 
+            modelBuilder.Entity("htsApp.Models.Facility", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Edited")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FacilityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("ModifiedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Facility");
+                });
+
             modelBuilder.Entity("htsApp.Models.HTSData", b =>
                 {
                     b.Property<long>("ID")
@@ -264,9 +293,6 @@ namespace htsApp.Migrations
 
                     b.Property<int?>("Age")
                         .HasColumnType("int");
-
-                    b.Property<bool>("CSO")
-                        .HasColumnType("bit");
 
                     b.Property<string>("CTCNumber")
                         .HasColumnType("nvarchar(max)");
@@ -331,11 +357,8 @@ namespace htsApp.Migrations
                     b.Property<string>("OutreachOrganizer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PrivateData")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PublicData")
-                        .HasColumnType("bit");
+                    b.Property<int>("Ownership")
+                        .HasColumnType("int");
 
                     b.Property<int>("Reasonfortesting")
                         .HasColumnType("int");
@@ -360,8 +383,8 @@ namespace htsApp.Migrations
                     b.Property<int>("Result")
                         .HasColumnType("int");
 
-                    b.Property<string>("ResultPositiveType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ResultPositiveType")
+                        .HasColumnType("int");
 
                     b.Property<int>("Sex")
                         .HasColumnType("int");

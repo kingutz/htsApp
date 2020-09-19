@@ -48,7 +48,7 @@ namespace htsApp.Controllers
                 hTs = await _context.HTS.ToListAsync();
 
                 builder.AppendLine("ID,NameofSite,OutreachName,District,Month,Year,OutreachOrganizer," +
-            "PublicData,PrivateData,CSO,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia," +
+            "Ownership,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia," +
             "ResidenceDistrict,Occupation,ClientsCategory,Disabled,HTCApproach,TypeofCounselling,Reasonfortesting," +
             "Result,DiscordantCouple,ResultPositiveType,Receivedresult,Noofmalecondomsissued,Nooffemalecondomsissued," +
             "Referredto,CTCNumber,RemarksName");
@@ -57,8 +57,7 @@ namespace htsApp.Controllers
                 {
                     builder.AppendLine($"{item.ID},{item.NameofSite},{item.OutreachName}," +
                     $"{item.District},{item.Month},{item.Year}," +
-                    $"{item.OutreachOrganizer},{item.PublicData},{item.PrivateData}," +
-                    $"{item.CSO},{item.DateData}," +
+                    $"{item.OutreachOrganizer},{item.Ownership}," +
                     $"{item.ClientCode},{item.TypeofAttendance}," +
                     $"{item.Age},{item.Sex},{item.MaritalStatus},{item.ResidenceShehia}," +
                     $"{item.ResidenceDistrict},{item.Occupation},{item.ClientCode},{item.Disabled}," +
@@ -74,7 +73,7 @@ namespace htsApp.Controllers
                 hTs = await _context.HTS.Where(p => p.CreatedByUser == currentUserService.GetCurrentUsername()).ToListAsync();
 
             builder.AppendLine("ID,NameofSite,OutreachName,District,Month,Year,OutreachOrganizer," +
-            "PublicData,PrivateData,CSO,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia," +
+            "Ownership,DateData,ClientCode,TypeofAttendance,Age,Sex,MaritalStatus,ResidenceShehia," +
             "ResidenceDistrict,Occupation,ClientsCategory,Disabled,HTCApproach,TypeofCounselling,Reasonfortesting," +
             "Result,DiscordantCouple,ResultPositiveType,Receivedresult,Noofmalecondomsissued,Nooffemalecondomsissued," +
             "Referredto,CTCNumber,RemarksName");
@@ -83,8 +82,7 @@ namespace htsApp.Controllers
             {
                 builder.AppendLine($"{item.ID},{item.NameofSite},{item.OutreachName}," +
                        $"{item.District},{item.Month},{item.Year}," +
-                       $"{item.OutreachOrganizer},{item.PublicData},{item.PrivateData}," +
-                       $"{item.CSO},{item.DateData}," +
+                       $"{item.OutreachOrganizer},{item.Ownership},{item.DateData}," +
                        $"{item.ClientCode},{item.TypeofAttendance}," +
                        $"{item.Age},{item.Sex},{item.MaritalStatus},{item.ResidenceShehia}," +
                        $"{item.ResidenceDistrict},{item.Occupation},{item.ClientCode},{item.Disabled}," +
