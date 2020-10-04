@@ -3,38 +3,33 @@
 }
 
 @*<div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <h4>Welcome</h4>
+        <p class="text-lg-center">HIV TESTING SERVICE DATABASE</p>
     </div>*@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <div>
+                <div class="row text-muted">
+                    <h4><strong>Welcome,</strong></h4>
+                </div>
+
+
+            </div>
+            <p class="lead text-muted"><strong>ZANZIBAR INTERGRATED HIV,HEPATITIS,TB & LEPROSY PROGRAMME.</strong></p>
+            <p class="lead text-muted"><strong>HIV TESTING SERVICES</strong></p>
             
-            <div id="chart1"></div>
-                    </div>
+            <p>
+                <a class="btn btn-primary my-2" asp-controller="HTS" asp-action="Create">HTS DATABASE</a>
 
-       
+                @*<a href="#" class="btn btn-secondary my-2">Site configuration</a>*@
+            </p>
+        </div>
+    </section>
+</main>
 
-    </div>
-</div>
-@section scripts{
+    @section scripts{
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            $.get('JsonData', function (jsonData) {
-                data = google.visualization.arrayToDataTable(jsonData, false);
-                var option = {
-                    title: "Line Chart",
-                    width: 800,
-                    height: 600
-                };
-                chart = new google.visualization.LineChart(document.getElementById('chart1'));
-                chart.draw(data, option);
-            })
-        }
-    </script>
-}
+    }

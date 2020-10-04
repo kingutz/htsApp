@@ -6,315 +6,322 @@
 }
 
 
-
-<div class="row">
-    <div class="col-md-8 ">
-        <div class="row">
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-2">
            
-            <dl>
-
-                <dt class="col-md-6">
-                    Total
-                </dt>
-               
-               
-                    <dd class="col-md-2 text-success">
-                     @Model.Count
-                    </dd>
-               
-            </dl>
-           
-                <form asp-action="Index" method="get">
-                    
-                        <div class="form-actions no-color">
-                            <p class="btn" style="background-color:aqua;">
-                                Find by Client Code & Shehia: <input type="text" name="SearchString" 
-                                                                     value="@ViewData["currentFilter"]" />
-                                <input type="submit" value="Search" class="btn btn-default text-info" />
-
-                            </p>
+                    @*<div class="col-md-4" style="margin-bottom:10px;">*@
+                    <div class="btn dropdown">
+                        <button class="btn btn-sm dropdown-toggle btn-outline-primary" type="button"
+                                data-toggle="dropdown">
+                            Export
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item text-success" asp-action="Exdoc" asp-controller="HtsEx">excel</a>
+                            <a class="dropdown-item text-primary" asp-action="CSV" asp-controller="HtsCS">csv</a>
 
                         </div>
-                   
-               
-                </form>
+                    </div>
 
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @if (User.IsInRole("admin") || User.IsInRole("analyst"))
-                    {
-                        <div class="col-md-4" style="margin-bottom:10px;">
-                            <div class="dropdown">
-                                <button class="btn btn-sm dropdown-toggle" style="background-color:aqua;" type="button"
-                                        data-toggle="dropdown">
-                                    Export
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item text-success" asp-action="Exdoc" asp-controller="HtsEx">excel</a>
-                                    <a class="dropdown-item text-primary" asp-action="CSV" asp-controller="HtsCS">csv</a>
+                    @*</div>*@
 
-                                </div>
-                            </div>
-
-                        </div>
-                    }
-                }
-            </div>
         </div>
+        <div class="col-md-8">
+
+            <form asp-action="Index" method="get">
+
+                @*<div class="form-actions no-color">*@
+                <p class="btn btn-outline-primary">
+                    Find by Client Code Or Shehia: <input type="text" name="SearchString"
+                                                          value="@ViewData["currentFilter"]" />
+                    <input type="submit" value="Search" class="btn" />
+
+                </p>
+
+                @*</div>*@
+
+
+            </form>
+        </div>
+        <div class="col-md-1 btn">
+
+            <p class="btn">
+                Record:
+
+            </p>
+
+        </div>
+        <div class="col-md-1 btn ">
+
+
+            <p class="btn btn-primary">
+                @Model.Count
+
+            </p>
+        </div>
+
+
+
+    </div>
+    <div style="margin:2px;" >
+        <a class="text-primary" asp-action="Create">New Record</a>
+    </div>
 </div>
+
 @*<hr />*@
 
 
-        <table class="table table-active table-primary">
-            <thead>
-                <tr>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.NameofSite)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OutreachName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.District)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Month)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Year)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OutreachOrganizer)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PublicData)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PrivateData)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CSO)
-                        </th>*@
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.DateData)*@
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
-                            Record Date
-                        </a>
+<table class="table table-active table-primary">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.NameofSite)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutreachName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.District)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Month)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutreachOrganizer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PublicData)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PrivateData)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CSO)
+                </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.DateData)*@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
+                    Record Date
+                </a>
 
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.ClientCode)*@
+                Client Code
+            </th>
+            @*<th>
+                        @Html.DisplayNameFor(model => model.TypeofAttendance)
                     </th>
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.ClientCode)*@
-                        Client Code
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                    Age
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sex)
+                    Sex
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaritalStatus)
+                    Marital Status
+                </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.ResidenceShehia)*@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">
+                    Residence Shehia
+                </a>
+
+
+            </th>
+            @*<th>
+                        @Html.DisplayNameFor(model => model.ResidenceDistrict)
                     </th>
-                    @*<th>
-                                @Html.DisplayNameFor(model => model.TypeofAttendance)
-                            </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Age)
-                            Age
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Sex)
-                            Sex
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.MaritalStatus)
-                            Marital Status
-                        </th>*@
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.ResidenceShehia)*@
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">
-                            Residence Shehia
-                        </a>
+                <th>
+                        @Html.DisplayNameFor(model => model.Occupation)
+                    </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ClientsCategory)
+                    Client Category
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Disabled)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.HTCApproach)
+                    HTC Approach
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.TypeofCounselling)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reasonfortesting)
+                </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.CreatedDate)*@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
+                    Created Date
+                </a>
 
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Result)*@
+                Result
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.DiscordantCouple)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ResultPositiveType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Receivedresult)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Noofmalecondomsissued)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nooffemalecondomsissued)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Referredto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CTCNumber)
+                </th>*@
 
-                    </th>
-                    @*<th>
-                                @Html.DisplayNameFor(model => model.ResidenceDistrict)
-                            </th>
-                        <th>
-                                @Html.DisplayNameFor(model => model.Occupation)
-                            </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.ClientsCategory)
-                            Client Category
-                        </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.Disabled)
-                        </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.HTCApproach)
-                            HTC Approach
-                        </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.TypeofCounselling)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Reasonfortesting)
-                        </th>*@
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.CreatedDate)*@
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">
-                            Created Date
-                        </a>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.NameofSite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OutreachName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.District)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Month)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OutreachOrganizer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublicData)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrivateData)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CSO)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateData)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientCode)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TypeofAttendance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaritalStatus)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResidenceShehia)
 
-                    </th>
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.Result)*@
-                        Result
-                    </th>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.DiscordantCouple)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ResultPositiveType)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Receivedresult)
-                        </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.Noofmalecondomsissued)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Nooffemalecondomsissued)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Referredto)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CTCNumber)
-                        </th>*@
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ResidenceDistrict)
+                    </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.Occupation)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ClientsCategory)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Disabled)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.HTCApproach)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TypeofCounselling)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reasonfortesting)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.DiscordantCouple)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ResultPositiveType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Receivedresult)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Noofmalecondomsissued)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nooffemalecondomsissued)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Referredto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CTCNumber)
+                    </td>*@
 
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.NameofSite)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OutreachName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.District)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Month)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Year)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OutreachOrganizer)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PublicData)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PrivateData)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CSO)
-                            </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateData)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ClientCode)
-                        </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.TypeofAttendance)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Age)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sex)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MaritalStatus)
-                            </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ResidenceShehia)
-
-                        </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.ResidenceDistrict)
-                            </td>
-                                <td>
-                                @Html.DisplayFor(modelItem => item.Occupation)
-                            </td>*@
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.ClientsCategory)
-                            </td>*@
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.Disabled)
-                            </td>*@
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.HTCApproach)
-                            </td>*@
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.TypeofCounselling)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Reasonfortesting)
-                            </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Result)
-                        </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.DiscordantCouple)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ResultPositiveType)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Receivedresult)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Noofmalecondomsissued)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nooffemalecondomsissued)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Referredto)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CTCNumber)
-                            </td>*@
-
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        @{
-            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
         }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
 
-        <a asp-action="Index"
-           asp-route-sortOrder="@ViewData["CurrentSort"]"
-           asp-route-pageNumber="@(Model.PageIndex - 1)"
-           asp-route-currentFilter="@ViewData["CurrentFilter"]"
-           class="btn btn-default @prevDisabled">
-            Previous
-        </a>
-        <a asp-action="Index"
-           asp-route-sortOrder="@ViewData["CurrentSort"]"
-           asp-route-pageNumber="@(Model.PageIndex + 1)"
-           asp-route-currentFilter="@ViewData["CurrentFilter"]"
-           class="btn btn-default @nextDisabled">
-            Next
-        </a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

@@ -17,7 +17,10 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
+.btn-hts {
+    color:red;
+   
+}
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
@@ -59,8 +62,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+   
 }
 .footer {
   position: absolute;
@@ -84,7 +88,7 @@ ul.ui-autocomplete {
     width:100px;
 }
 .ui-autocomplete li.ui-menu-item:hover {
-    background: aqua;
+    background:bisque;
 }
 
 .wrapper {

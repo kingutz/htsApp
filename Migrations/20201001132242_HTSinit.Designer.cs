@@ -10,8 +10,8 @@ using htsApp.Data;
 namespace htsApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200919133101_DMtype")]
-    partial class DMtype
+    [Migration("20201001132242_HTSinit")]
+    partial class HTSinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -293,8 +293,8 @@ namespace htsApp.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Age")
-                        .HasColumnType("int");
+                    b.Property<long?>("Age")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CTCNumber")
                         .HasColumnType("nvarchar(max)");
@@ -344,11 +344,11 @@ namespace htsApp.Migrations
                     b.Property<string>("NameofSite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Nooffemalecondomsissued")
-                        .HasColumnType("int");
+                    b.Property<long?>("Nooffemalecondomsissued")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("Noofmalecondomsissued")
-                        .HasColumnType("int");
+                    b.Property<long?>("Noofmalecondomsissued")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Occupation")
                         .HasColumnType("int");
@@ -397,8 +397,8 @@ namespace htsApp.Migrations
                     b.Property<int>("TypeofCounselling")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Year")
-                        .HasColumnType("int");
+                    b.Property<long?>("Year")
+                        .HasColumnType("bigint");
 
                     b.HasKey("ID");
 

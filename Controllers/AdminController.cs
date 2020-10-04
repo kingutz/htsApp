@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace htsApp.Controllers
 {
+    [Authorize(Roles = "admin,analyst")]
     public class AdminController : Controller
     {
 

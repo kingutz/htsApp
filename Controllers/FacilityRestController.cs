@@ -27,7 +27,8 @@ namespace htsApp.Controllers
             try
             {
                 string term = HttpContext.Request.Query["term"].ToString();
-                var names = await _context.Facility.Where(p => p.FacilityName.Contains(term)).Select(p => p.FacilityName).ToListAsync();
+                var names = await _context.Facility.Where(p => p.FacilityName.Contains(term)).Distinct().
+                    Select(p => p.FacilityName).ToListAsync();
                 return Ok(names);
             }
             catch

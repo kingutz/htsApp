@@ -78,7 +78,7 @@ namespace htsApp.Controllers
             {
                 _context.Add(facility);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(facility);
         }
@@ -110,6 +110,7 @@ namespace htsApp.Controllers
             if (id != facility.ID)
             {
                 return NotFound();
+
             }
 
             if (ModelState.IsValid)

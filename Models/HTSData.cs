@@ -20,15 +20,15 @@ using System.ComponentModel.DataAnnotations;
         public string OutreachName { get; set; }
 
 
-        [Display(Name = "District name")]
+        [Display(Name = "District")]
         public string District { get; set; }
 
 
         [Column(TypeName = "nvarchar(255)")]
         public string Month { get; set; }
 
-
-        public int? Year { get; set; }
+        [Range(2010, 2030, ErrorMessage = "Ingiza namba nne za mwaka kati ya 2010-2030")]
+        public uint? Year { get; set; }
 
         [Display(Name = "Outreach Organizer")]
         public string OutreachOrganizer { get; set; }
@@ -60,7 +60,8 @@ using System.ComponentModel.DataAnnotations;
         [Display(Name = "Type of attendance")]
         public TypeofAttendance TypeofAttendance { get; set; }
 
-        public int? Age { get; set; }
+        [Range(0, 110, ErrorMessage = "Minimum age is 0 and maximun is 110")]
+        public uint? Age { get; set; }
 
 
         [Required(ErrorMessage = "Jaza!")]
@@ -111,15 +112,17 @@ using System.ComponentModel.DataAnnotations;
         [Display(Name = "Result Positive type")]
         public ResultPositiveType ResultPositiveType { get; set; }
 
-
+       // [Required(ErrorMessage = "Jaza!")]
         [Display(Name = "Received result")]
         public ReceivedResult Receivedresult { get; set; }
 
+        [Range(0, 1000, ErrorMessage = "Minmum condom is 0 and Maxmum is 1000")]
         [Display(Name = "No of male condoms issued")]
-        public int? Noofmalecondomsissued { get; set; }
+        public uint? Noofmalecondomsissued { get; set; }
 
+        [Range(0, 1000, ErrorMessage = "Minimum condom is 0 and Maximum is 1000")]
         [Display(Name = "No of female condoms issued")]
-        public int? Nooffemalecondomsissued { get; set; }
+        public uint? Nooffemalecondomsissued { get; set; }
 
 
         [Display(Name = "Referred to")]
@@ -193,8 +196,11 @@ using System.ComponentModel.DataAnnotations;
         [Display(Name = "4.Divorced")]
         Divorced=4,
         [Display(Name = "5.Widowed")]
-        Widowed=5 
-        }
+        Widowed= 5,
+        [Display(Name = "6.Child")]
+        Child = 6 
+            
+    }
     public enum TypeOfCounselling 
     {
         [Display(Name = "1.Individual")]
@@ -266,7 +272,7 @@ using System.ComponentModel.DataAnnotations;
         [Display(Name = "1.Yes")]
         Yes=1,
         [Display(Name = "0.No")]
-        No=0 
+        No
         
         
     }
@@ -310,9 +316,11 @@ using System.ComponentModel.DataAnnotations;
          public enum ResultPositiveType
     {
         [Display(Name = "1.New case")]
-        Newcase = 1,
+        New_case = 1,
         [Display(Name = "2.Known HIV case")]
-        PrivateData = 2
-       
+        Known_HIV_case = 2,
+        [Display(Name = "3.Not Applicable")]
+        NotApplicable = 3
+
     }
 }

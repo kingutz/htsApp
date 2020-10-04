@@ -49,37 +49,43 @@
                     <li class="nav-item active">
                         <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="HTS" asp-action="Create">New</a>
-                    </li>
-                    @*<li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>*@
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="dropdown011"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" asp-controller="UserAction" asp-action="Index">User action</a>
-                            <a class="dropdown-item" asp-controller="Admin" asp-action="Index">Site admin</a>
-                            
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="dropdown01"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Site config</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" asp-controller="FacilityHts" asp-action="Create">Facility</a>
-                            <a class="dropdown-item" asp-controller="DistrictHts" asp-action="Create">District</a>
-                            <a class="dropdown-item" asp-controller="ShehiaHts" asp-action="Create">Shehia</a>
-                        </div>
-                    </li>
-                </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("admin"))
+                        {
+                            @*<li class="nav-item">
+                    <a class="nav-link" asp-controller="HTS" asp-action="Create">New</a>
+                </li>*@
+                            @*<li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>*@
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown011"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" asp-controller="UserAction" asp-action="Index">User action</a>
+                                    <a class="dropdown-item" asp-controller="Admin" asp-action="Index">Site admin</a>
+
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown01"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Site config</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <a class="dropdown-item" asp-controller="FacilityHts" asp-action="Create">Facility</a>
+                                    <a class="dropdown-item" asp-controller="DistrictHts" asp-action="Create">District</a>
+                                    <a class="dropdown-item" asp-controller="ShehiaHts" asp-action="Create">Shehia</a>
+                                </div>
+                            </li>
+                            }
+                        }
+                        </ul>
                 <partial name="_LoginPartial" />
-                <form class="form-inline my-2 my-lg-0" asp-action="Index" asp-controller="HTS">
+                @*<form class="form-inline my-2 my-lg-0" asp-action="Index" asp-controller="HTS">
                     <input class="form-control mr-sm-2" type="text" name="SearchString"
                            value="@ViewData["currentFilter"]" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                </form>*@
             </div>
         </nav>
 
@@ -92,7 +98,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - htsApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Strategic Information Unit-ZIHHTLP, Zanzibar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 

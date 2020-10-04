@@ -22,6 +22,8 @@ namespace htsApp.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ICurrentUserService currentUserService;
         private readonly ApplicationDbContext _context;
+       
+        
 
         public ShehiaHtsController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager,
             UserManager<ApplicationUser> userManager, ILogger<ApplicationDbContext> logger,
@@ -33,8 +35,11 @@ namespace htsApp.Controllers
             _roleManager = roleManager;
             _logger = logger;
             this.currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
-
+            
         }
+       
+
+
         private void PopulateDistrictDropDownList(object selectedNumber = null)
         {
             var dsnQuery = from d in _context.district
@@ -85,7 +90,7 @@ namespace htsApp.Controllers
             {
                 _context.Add(shehia);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(shehia);
         }

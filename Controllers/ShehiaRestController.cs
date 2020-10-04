@@ -10,16 +10,19 @@ using htsApp.Models;
 
 namespace htsApp.Controllers
 {
-    [Route("api/shehia")]
+    [Route("api/shehiaa")]
     [ApiController]
     public class ShehiaRestController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
-        public ShehiaRestController(ApplicationDbContext context)
+        private readonly IDistrictShehia _districtshehia;
+        public ShehiaRestController(ApplicationDbContext context, IDistrictShehia districtShehia)
         {
             _context = context;
+            _districtshehia = districtShehia;
         }
+        [BindProperty(SupportsGet = true)]
+        public long DId { get; set; }
         // GET: api/DistrictRest/5
         //[HttpGet("{id}")]
         //public async Task<ActionResult<Shehia>> GetDistrict(long id)
@@ -33,25 +36,41 @@ namespace htsApp.Controllers
 
         //    return district;
         //}
+
         [Produces("application/json")]
-        [HttpPost("searchshe")]
+        [HttpGet("searchshe")]
         public async Task<IActionResult> Shehiasrc()
         {
+         
             try
             {
                 string term = HttpContext.Request.Query["term"].ToString();
-               var names = await _context.shehia.Where(p => p.ShehiaName.Contains(term)).Select(p => p.ShehiaName).ToListAsync();
-
-           // var names = await _context.shehia.Where(p => p.ShehiaName.Contains(term)).
-           //Select(p => new ShehiaView { Id=p.districtId,Name= p.ShehiaName }).ToListAsync();
+                var names = await _context.shehia.Where(p => p.ShehiaName.Contains(term)).Distinct().
+                    Select(p => p.ShehiaName).ToListAsync();
                 return Ok(names);
-                //return Json(names, JsonRequestBehavior.AllowGet);
-               
+
             }
             catch
             {
                 return BadRequest();
             }
+        }
+       
+        public JsonResult OnGetShehiaa(long DId)
+       
+        {
+            return new JsonResult(_districtshehia.GetShehia(DId));
+           
+        }
+        //[HttpGet("id")]
+        public IActionResult Search(long id)
+        {
+            var result = _context.shehia.Where(d=>d.districtId==id).Select(d=> new Shehia {ShehiaName=d.ShehiaName }).ToList();
+            if (!result.Any())
+            {
+                return NotFound(id);
+            }
+            return Ok(result);
         }
     }
 }

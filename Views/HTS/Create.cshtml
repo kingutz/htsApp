@@ -8,193 +8,198 @@
 
 
 
-<h4 class="text-secondary">ZIHHTLP HIV TESTING SERVICES DATABASE</h4>
 
-<hr />
+
+
 <h6 class="text-secondary">New Record</h6>
 <hr />
 
 <form asp-action="Create">
-    <div class="row text-muted" style="background-color:aqua;">
+    <div class="row justify-content-between jumbotron">
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-        <div class="row" style="background-color: bisque; margin:3px;padding:5px;">
-            <div class="col-md-3" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="NameofSite" class="control-label "></label>
-
-                </div>
-                <div class="row">
-                    <input asp-for="NameofSite" id="nsitename" class="form-control" />
-                    <span asp-validation-for="NameofSite" class="text-danger"></span>
-                </div>
+        @*<div class="col-12">
+        <div class="row text-primary " margin:3px;padding:5px;">*@
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="NameofSite" class="control-label "></label>
             </div>
-            <div class="col-md-4" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="OutreachName" class="control-label"></label>
-                </div>
-                <div class="row">
-                    <input asp-for="OutreachName" class="form-control" />
-                    <span asp-validation-for="OutreachName" class="text-danger"></span>
-                </div>
-
-
+            <div class="row">
+                @*<select asp-for="NameofSite" class="form-control" asp-items="ViewBag.fsn">
+                    <option value=""></option>
+                </select>*@
+                <input asp-for="NameofSite" id="nsitename" class="form-control text-success" />
+                <span asp-validation-for="NameofSite" class="text-danger"></span>
             </div>
-            <div class="col-md-4" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="District" class="control-label"></label>
-                </div>
-                <div class="row">
-                    <input asp-for="District" id="ndistrictname" aria-label="" class="form-control ui-state-hover" />
-
-                    @*<input type="text" id="ndistrictname" class="form-control" />*@
-                    @*<select asp-for="District" class="form-control" asp-items="ViewBag.dsn">
-                            <option value=""></option>
-                        </select>*@
-
-                    <span asp-validation-for="District" class="text-danger"></span>
-                </div>
-
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="OutreachName" class="control-label"></label>
             </div>
-            <div class="col-md-3" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="Month" class="control-label"></label>
-                </div>
-                <div class="row">
-                    @*<input asp-for="Month" class="form-control" />*@
-                    <select asp-for="Month" class="form-control">
-                        <option value=""></option>
-                        <option>JANUARY</option>
-                        <option>FEBRUARY</option>
-                        <option>MARCH</option>
-                        <option>APRIL</option>
-                        <option>MAY</option>
-                        <option>JUNE</option>
-                        <option>JULY</option>
-                        <option>AUGUST</option>
-                        <option>SEPTEMBER</option>
-                        <option>OCTOBER</option>
-                        <option>NOVEMBER</option>
-                        <option>DECEMBER</option>
-
-
-                    </select>
-                    <span asp-validation-for="Month" class="text-danger"></span>
-                </div>
-
-            </div>
-            <div class="col-md-2" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="Year" class="control-label"></label>
-                </div>
-                <div class="row">
-                    <input asp-for="Year" class="form-control" />
-                    <span asp-validation-for="Year" class="text-danger"></span>
-                </div>
-
-
+            <div class="row">
+                <input asp-for="OutreachName" class="form-control text-success" />
+                <span asp-validation-for="OutreachName" class="text-danger"></span>
             </div>
 
-            <div class="col-md-2" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="Ownership" class="control-label"></label>
-                </div>
-                <div class="row">
-                    <select asp-for="Ownership" asp-items="Html.GetEnumSelectList<Ownership>()" class="form-control">
-                        <option selected="selected" value=""></option>
-                    </select>
-                    <span asp-validation-for="Ownership" class="text-danger"></span>
-                </div>
-
-
-            </div>
-            <div class="col-md-4" style="margin:2px;">
-                <div class="row">
-                    <label asp-for="OutreachOrganizer" class="control-label"></label>
-                </div>
-                <div class="row">
-                    <input asp-for="OutreachOrganizer" class="form-control" />
-                    <span asp-validation-for="OutreachOrganizer" class="text-danger"></span>
-                </div>
-
-
-            </div>
-
-            @*<div class="col-md-6" style="margin-top:30px;margin-left:10px;padding:5px;">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    @Html.DisplayNameFor(model => model.PublicData)
-                                </div>
-                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
-                                    <input class="form-check-input" asp-for="PublicData" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    @Html.DisplayNameFor(model => model.PrivateData)
-                                </div>
-                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
-                                    <input class="form-check-input" asp-for="PrivateData" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    @Html.DisplayNameFor(model => model.CSO)
-                                </div>
-                                <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
-                                    <input class="form-check-input" asp-for="CSO" />
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-                    </div>
-
-
-
-                </div>*@
 
         </div>
-        <div class="col-md-3" style="margin-left:12px;margin-top:2px;">
+        <div class="col-md-2">
+            <div class="row">
+                <label asp-for="District" class="control-label"></label>
+            </div>
+            <div class="row">
+                @*<input asp-for="District"  aria-label="" class="form-control ui-state-hover" />*@
+
+                @*<input type="text" id="ndistrictname" class="form-control" />*@
+                <select asp-for="District" class="form-control text-success" asp-items="ViewBag.dsn">
+                    <option value=""></option>
+                </select>
+
+                <span asp-validation-for="District" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="Month" class="control-label"></label>
+            </div>
+            <div class="row">
+                @*<input asp-for="Month" class="form-control" />*@
+                <select asp-for="Month" class="form-control text-success">
+                    <option value=""></option>
+                    <option>JANUARY</option>
+                    <option>FEBRUARY</option>
+                    <option>MARCH</option>
+                    <option>APRIL</option>
+                    <option>MAY</option>
+                    <option>JUNE</option>
+                    <option>JULY</option>
+                    <option>AUGUST</option>
+                    <option>SEPTEMBER</option>
+                    <option>OCTOBER</option>
+                    <option>NOVEMBER</option>
+                    <option>DECEMBER</option>
+
+
+                </select>
+                <span asp-validation-for="Month" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="Year" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="Year" class="form-control text-success" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-2">
+            <div class="row">
+                <label asp-for="Ownership" class="control-label"></label>
+            </div>
+            <div class="row">
+                <select asp-for="Ownership" asp-items="Html.GetEnumSelectList<Ownership>()"
+                        class="form-control text-success">
+                    <option selected="selected" value=""></option>
+                </select>
+                <span asp-validation-for="Ownership" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <label asp-for="OutreachOrganizer" class="control-label"></label>
+            </div>
+            <div class="row">
+                <input asp-for="OutreachOrganizer" class="form-control text-success" />
+                <span asp-validation-for="OutreachOrganizer" class="text-danger"></span>
+            </div>
+
+
+        </div>
+
+        @*<div class="col-md-6" style="margin-top:30px;margin-left:10px;padding:5px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.DisplayNameFor(model => model.PublicData)
+                        </div>
+                        <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                            <input class="form-check-input" asp-for="PublicData" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.DisplayNameFor(model => model.PrivateData)
+                        </div>
+                        <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                            <input class="form-check-input" asp-for="PrivateData" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.DisplayNameFor(model => model.CSO)
+                        </div>
+                        <div class="col-md-3" style="margin-left:50px;margin-top:3px;">
+                            <input class="form-check-input" asp-for="CSO" />
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>*@
+
+        @*</div>
+        </div>*@
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="DateData" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="DateData" class="form-control" id="ndate" />
+                <input asp-for="DateData" class="form-control text-success" id="ndate" />
                 <span asp-validation-for="DateData" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-2" style="margin:2px;">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="ClientCode" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ClientCode" class="form-control" id="nclientcode" />
+                <input asp-for="ClientCode" class="form-control text-success" id="nclientcode" />
                 <span asp-validation-for="ClientCode" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-2" style="margin:2px;">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="TypeofAttendance" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="TypeofAttendance" class="form-control" />*@
-                <select asp-for="TypeofAttendance" asp-items="Html.GetEnumSelectList<TypeofAttendance>()" class="form-control">
+                <select asp-for="TypeofAttendance" asp-items="Html.GetEnumSelectList<TypeofAttendance>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="TypeofAttendance" class="text-danger"></span>
@@ -202,24 +207,25 @@
 
 
         </div>
-        <div class="col-md-2" style="margin:2px;">
+        <div class="col-md-2">
             <div class="row">
                 <label asp-for="Age" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Age" class="form-control" />
+                <input asp-for="Age" class="form-control text-success" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-2" style="margin:2px;">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="Sex" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="Sex" class="form-control" />*@
-                <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()" class="form-control">
+                <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="Sex" class="text-danger"></span>
@@ -227,13 +233,14 @@
 
 
         </div>
-        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+        <div class="col-md-2" id="nMaritalStatus">
             <div class="row">
                 <label asp-for="MaritalStatus" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="MaritalStatus" class="form-control" />*@
-                <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
+                <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
@@ -241,35 +248,49 @@
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="ResidenceShehia" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ResidenceShehia" id="nresShehia" class="form-control" />
+
+                <input asp-for="ResidenceShehia" id="ResidenceShehia" class="form-control text-success" />
+                @*<select asp-for="ResidenceShehia" id="nresdistrict" class="form-control text-success"
+                        asp-items="ViewBag.sheh">
+                    <option value=""></option>
+                </select>*@
                 <span asp-validation-for="ResidenceShehia" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="ResidenceDistrict" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="ResidenceDistrict" id="nresDistrict" class="form-control" />
+                @*<select asp-for="District" id="ndistrict" class="form-control" asp-items="ViewBag.ShehiaD">
+                    <option value=""></option>
+                </select>*@
+                <select asp-for="ResidenceDistrict" class="form-control text-success" asp-items="ViewBag.dsn">
+                    <option value=""></option>
+                </select>
+                @*<input asp-for="ResidenceDistrict" id="nresDistrict" class="form-control" />*@
                 <span asp-validation-for="ResidenceDistrict" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+
+        <div class="col-md-3" id="nOccupation">
             <div class="row">
                 <label asp-for="Occupation" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="Occupation" class="form-control" />*@
-                <select asp-for="Occupation" asp-items="Html.GetEnumSelectList<Occupation>()" class="form-control">
+                <select asp-for="Occupation" asp-items="Html.GetEnumSelectList<Occupation>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="Occupation" class="text-danger"></span>
@@ -277,13 +298,15 @@
 
 
         </div>
-        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+
+        <div class="col-md-3" id="nClientsCategory">
             <div class="row">
                 <label asp-for="ClientsCategory" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="ClientsCategory" class="form-control" />*@
-                <select asp-for="ClientsCategory" asp-items="Html.GetEnumSelectList<ClientCategory>()" class="form-control">
+                <select asp-for="ClientsCategory" asp-items="Html.GetEnumSelectList<ClientCategory>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
 
@@ -292,13 +315,14 @@
 
 
         </div>
-        <div class="col-md-2" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="Disabled" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="Disabled" class="form-control" />*@
-                <select asp-for="Disabled" asp-items="Html.GetEnumSelectList<Disabled>()" class="form-control">
+                <select asp-for="Disabled" asp-items="Html.GetEnumSelectList<Disabled>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="Disabled" class="text-danger"></span>
@@ -306,13 +330,14 @@
 
 
         </div>
-        <div class="col-md-2" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="HTCApproach" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="HTCApproach" class="form-control" />*@
-                <select asp-for="HTCApproach" asp-items="Html.GetEnumSelectList<HTSApproach>()" class="form-control">
+                <select asp-for="HTCApproach" asp-items="Html.GetEnumSelectList<HTSApproach>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="HTCApproach" class="text-danger"></span>
@@ -320,13 +345,14 @@
 
 
         </div>
-        <div class="col-md-2" style="margin:2px">
+        <div class="col-md-2" id="nTypeofCounselling">
             <div class="row">
                 <label asp-for="TypeofCounselling" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="TypeofCounselling" class="form-control" />*@
-                <select asp-for="TypeofCounselling" asp-items="Html.GetEnumSelectList<TypeOfCounselling>()" class="form-control">
+                <select asp-for="TypeofCounselling" asp-items="Html.GetEnumSelectList<TypeOfCounselling>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="TypeofCounselling" class="text-danger"></span>
@@ -334,13 +360,14 @@
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="Reasonfortesting" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="Reasonfortesting" class="form-control" />*@
-                <select asp-for="Reasonfortesting" asp-items="Html.GetEnumSelectList<ReasonTesting>()" class="form-control">
+                <select asp-for="Reasonfortesting" asp-items="Html.GetEnumSelectList<ReasonTesting>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="Reasonfortesting" class="text-danger"></span>
@@ -348,13 +375,14 @@
 
 
         </div>
-        <div class="col-md-2" style="margin-left:12px;margin-top:2px">
+        <div class="col-md-2">
             <div class="row">
                 <label asp-for="Result" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="Result" class="form-control" />*@
-                <select asp-for="Result" asp-items="Html.GetEnumSelectList<Result>()" class="form-control">
+                <select asp-for="Result" id="nResult" asp-items="Html.GetEnumSelectList<Result>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="Result" class="text-danger"></span>
@@ -362,12 +390,13 @@
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="DiscordantCouple" class="control-label"></label>
             </div>
             <div class="row">
-                <select asp-for="DiscordantCouple" asp-items="Html.GetEnumSelectList<DiscordantCouple>()" class="form-control">
+                <select asp-for="DiscordantCouple" asp-items="Html.GetEnumSelectList<DiscordantCouple>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="DiscordantCouple" class="text-danger"></span>
@@ -375,13 +404,14 @@
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="ResultPositiveType" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="ResultPositiveType" class="form-control" />*@
-                <select asp-for="ResultPositiveType" asp-items="Html.GetEnumSelectList<ResultPositiveType>()" class="form-control">
+                <select asp-for="ResultPositiveType" asp-items="Html.GetEnumSelectList<ResultPositiveType>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="ResultPositiveType" class="text-danger"></span>
@@ -389,13 +419,14 @@
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-2">
             <div class="row">
                 <label asp-for="Receivedresult" class="control-label"></label>
             </div>
             <div class="row">
                 @*<input asp-for="Receivedresult" class="form-control" />*@
-                <select asp-for="Receivedresult" asp-items="Html.GetEnumSelectList<ReceivedResult>()" class="form-control">
+                <select asp-for="Receivedresult" asp-items="Html.GetEnumSelectList<ReceivedResult>()"
+                        class="form-control text-success">
                     <option selected="selected" value=""></option>
                 </select>
                 <span asp-validation-for="Receivedresult" class="text-danger"></span>
@@ -403,79 +434,89 @@
 
 
         </div>
-        <div class="col-md-3" style="margin-left:12px;margin-top:2px">
+        <div class="col-md-3" id="nNoofmalecondomsissued">
             <div class="row">
                 <label asp-for="Noofmalecondomsissued" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Noofmalecondomsissued" class="form-control" />
+                <input asp-for="Noofmalecondomsissued" class="form-control text-success" />
                 <span asp-validation-for="Noofmalecondomsissued" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-3" id="nNooffemalecondomsissued">
             <div class="row">
                 <label asp-for="Nooffemalecondomsissued" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Nooffemalecondomsissued" class="form-control" />
+                <input asp-for="Nooffemalecondomsissued" class="form-control text-success" />
                 <span asp-validation-for="Nooffemalecondomsissued" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-2" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="Referredto" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="Referredto" class="form-control" />
+                <input asp-for="Referredto" class="form-control text-success" />
                 <span asp-validation-for="Referredto" class="text-danger"></span>
             </div>
 
 
         </div>
-        <div class="col-md-3" style="margin:2px">
+        <div class="col-md-3">
             <div class="row">
                 <label asp-for="CTCNumber" class="control-label"></label>
             </div>
             <div class="row">
-                <input asp-for="CTCNumber" class="form-control" id="ctcno" />
+                <input asp-for="CTCNumber" class="form-control text-success" id="ctcno" />
                 <span asp-validation-for="CTCNumber" class="text-danger"></span>
             </div>
 
 
         </div>
 
-        <div class="col-md-4" style="margin-left:12px;margin-top:2px">
+        @*<div class="col-md-3" style="margin-left:12px;margin-top:2px">
             <div class="row">
                 <label asp-for="RemarksName" class="control-label"></label>
             </div>
             <div class="row">
-                <textarea asp-for="RemarksName" class="form-control"></textarea>
+                <textarea asp-for="RemarksName" class="form-control text-success"></textarea>
                 <span asp-validation-for="RemarksName" class="text-danger"></span>
             </div>
 
 
-        </div>
+        </div>*@
 
-        <div class="col-md-12" style="margin-top:10px;margin-bottom:10px;padding-left:5px;">
+        <div class="col-md-12" style="margin-top:10px;">
             <div class="row">
-                <div class="col-md-3">
-                    <input type="submit" value="Save" class="btn btn-secondary text-danger"
-                           style="background-color: bisque; margin:3px;padding:5px;" />
-                </div>
-                <div class="col-md-3">
-                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="submit" value="Save" class="btn btn-primary " />
+                        </div>
+                        <div class="col-md-3">
+                            <a asp-action="Create" class="btn btn-secondary">Cancel</a>
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
-</form>
 
+
+
+    </div>
+    
+</form>
+<div class="justify-content-around">
+    <a asp-action="Index">Back to List</a>
+</div>
 
 
 @*<div>
@@ -489,75 +530,180 @@
 
     <script type="text/javascript">
 
+       
+       
         $(document).ready(function () {
-            $('#ndistrictname').autocomplete({
+            $('#ResidenceShehia').autocomplete({
 
-                source: '/api/districts/searchdist'
+                source: '/api/shehiaa/searchshe'
             });
         });
+
         $(document).ready(function () {
             $('#nsitename').autocomplete({
 
                 source: '/api/facilities/searchfac'
+
             });
         });
+
+
         $(document).ready(function () {
-            $('#nresShehia').autocomplete({
-
-                source: '/api/shehia/searchshe'
+            $("#ndistrict").on("change", function () {
+                var DId = $(this).val();
+                $("#nresdistrict").empty();
+                $("#nresdistrict").append(`<option value=''>"${DId}"</option>`);
+                $.getJSON(`?handler=api/shehia/Shehiaa&id=${DId}`, (data) => {
+                    $.each(data, function (i, item) {
+                        $("#nresdistrict").append(`<option value="${item.ID}"${item.ShehiaName}</option>`);
+                    });
+                });
             });
         });
+
+
         $(document).ready(function () {
-            $('#nresDistrict').autocomplete({
+            $('#CTCNumber').mask('00-00-0000-000000');
 
-                source: '/api/districts/searchdist'
-            });
+
         });
-            //$(document).ready(function () {
-            //    //var s = $('#nresShehia').val();
-            //    minLength: 3,
-            //        $('#nresShehia').autocomplete({
-            //            source: '/api/shehia/searchshe',
-
-            //            select: function (event, ui) {
-            //                $(this).val(ui.item.label)
-            //                $("#nresShehia").val(ui.item.value);
-            //                return false;
-            //            }
-            //        });
-            //});
 
 
-                //$(document).ready(function () {
-                //    $('#nresShehia').autocomplete({
-                //        source: function (request, response) {
-                //            $.ajax({
-                //                url: "/api/shehia/searchshe",
-                //                type: "POST",
-                //                dataType: "json",
-                //                data: { Prefix: request.term },
-                //                success: function (data) {
-                //                    response($.map(data, function (item)
-                //                    {
-                //                        return { value: item.districtId, label: item.ShehiaName };
-                //                    }))
-                //                }
-                //            })
+        $(document).on("change", "#nResult", function () {
+            if ($(this).val() == '2') {
 
-                //        },
-                //        select: function (event, ui) {
-                //            $(this).val(ui.item.value)
-                //            $("#nresShehia").val(ui.item.id);
-                //        },
-                //        messages: {
-                //            noResults: "", results: ""
-                //        }
-                //    });
-                //})
+               
+                $("#nResult").addClass('btn-hts');
+                $("#nResult").removeClass('text-success');
+                $("#ResultPositiveType").empty();
+                $("#ResultPositiveType").append($('<option></option>').attr("value", '').text(''));
+                $("#ResultPositiveType").append($('<option></option>').attr("value", 1).text('1.New case'));
+                $("#ResultPositiveType").append($('<option></option>').attr("value", 2).text('2.Known HIV case'));
+                $('#ResultPositiveType').attr('readonly', false);
+                //$('#nResultPositiveType').addClass('collapse');
+                $("#ResultPositiveType").removeClass('text-secondary');
+                $("#ResultPositiveType").addClass('text-success');
 
-            //$j('.ui-autocomplete').on('mouseover', '.ui-menu-item', function () {
-            //    $(this).find('a').click();
-            //});
+            }
+            else {
+
+                $("#ResultPositiveType").empty();
+                $("#ResultPositiveType").append($('<option></option>').attr("value", 3).text('3.Not Applicable'));
+                $('#ResultPositiveType').attr('readonly', true);
+                //$('#nTypeofCounselling').removeClass('collapse');
+                $("#nResult").removeClass('btn-hts');
+                $("#nResult").addClass('text-success')
+                $("#ResultPositiveType").addClass('text-secondary');
+                $("#ResultPositiveType").removeClass('text-success');
+            }
+        });
+
+        $(document).on("change", "#Age", function () {
+
+            if ($(this).val() <= 13)
+            {
+                $('#Noofmalecondomsissued').attr('readonly', true);
+                $('#Nooffemalecondomsissued').attr('readonly', true);
+                //$('#nNoofmalecondomsissued').addClass('collapse');
+                //$('#nNooffemalecondomsissued').addClass('collapse');
+
+                $('#Noofmalecondomsissued').val('');
+                $('#Nooffemalecondomsissued').val('');
+              
+                $("#MaritalStatus").empty();
+                $("#MaritalStatus").append($('<option></option>').attr("value", 6).text('6.Not Applicable'));
+                $('#MaritalStatus').attr('readonly', true);
+                $("#MaritalStatus").addClass('text-secondary');
+                $("#MaritalStatus").removeClass('text-success');
+                //$('#nMaritalStatus').addClass('collapse');
+
+                $("#Occupation").empty();
+                $("#Occupation").append($('<option></option>').attr("value", 7).text('7.Child'));
+                $('#Occupation').attr('readonly', true);
+                $("#Occupation").addClass('text-secondary');
+                $("#Occupation").removeClass('text-success');
+                //$('#nOccupation').addClass('collapse');
+
+                $("#TypeofCounselling").empty();
+                $("#TypeofCounselling").append($('<option></option>').attr("value", 4).text('4.Parent & Child'));
+                $('#TypeofCounselling').attr('readonly', true);
+                $("#TypeofCounselling").addClass('text-secondary');
+                $("#TypeofCounselling").removeClass('text-success');
+                //$('#nTypeofCounselling').addClass('collapse');
+
+                $("#ClientsCategory").empty();
+                $("#ClientsCategory").append($('<option></option>').attr("value", 6).text('6.None of the above'));
+                $('#ClientsCategory').attr('readonly', true);
+                $("#ClientsCategory").addClass('text-secondary');
+                $("#ClientsCategory").removeClass('text-success');
+                //$('#nClientsCategory').addClass('collapse');
+            }
+            else
+            {
+                $('#Noofmalecondomsissued').attr('readonly', false);
+                $('#Nooffemalecondomsissued').attr('readonly', false);
+               
+                //$('#nNoofmalecondomsissued').removeClass('collapse');
+                //$('#nNooffemalecondomsissued').removeClass('collapse');
+                
+                $("#MaritalStatus").empty();
+                $("#MaritalStatus").append($('<option></option>').attr("value", '').text(''));
+                $("#MaritalStatus").append($('<option></option>').attr("value", 1).text('1.Single'));
+                $("#MaritalStatus").append($('<option></option>').attr("value", 2).text('2.Married'));
+                $("#MaritalStatus").append($('<option></option>').attr("value", 3).text('3.Cohabiting'));
+                $("#MaritalStatus").append($('<option></option>').attr("value", 4).text('4.Divorced'));
+                $("#MaritalStatus").append($('<option></option>').attr("value", 5).text('5.Widowed'));
+                $('#MaritalStatus').attr('readonly', false);
+                $("#MaritalStatus").removeClass('text-secondary');
+                $("#MaritalStatus").addClass('text-success');
+                //$('#nMaritalStatus').removeClass('collapse');
+
+                $("#Occupation").empty();
+                $("#Occupation").append($('<option></option>').attr("value", '').text(''));
+                $("#Occupation").append($('<option></option>').attr("value", 1).text('1. Government Employed'));
+                $("#Occupation").append($('<option></option>').attr("value", 2).text('2. Private Employed'));
+                $("#Occupation").append($('<option></option>').attr("value", 3).text('3. Self Employed'));
+                $("#Occupation").append($('<option></option>').attr("value", 4).text('4. People with Uniform'));
+                $("#Occupation").append($('<option></option>').attr("value", 5).text('5. Jobless'));
+                $("#Occupation").append($('<option></option>').attr("value", 6).text('6. Student'));
+                $('#Occupation').attr('readonly', false);
+                $("#Occupation").removeClass('text-secondary');
+                $("#Occupation").addClass('text-success');
+                //$('#nOccupation').removeClass('collapse');
+
+                $("#TypeofCounselling").empty();
+                $("#TypeofCounselling").append($('<option></option>').attr("value", '').text(''));
+                $("#TypeofCounselling").append($('<option></option>').attr("value", 1).text('1.Individual'));
+                $("#TypeofCounselling").append($('<option></option>').attr("value", 2).text('2.Married'));
+                $("#TypeofCounselling").append($('<option></option>').attr("value", 3).text('3.Unmarried'));
+                $('#TypeofCounselling').attr('readonly', false);
+                $("#TypeofCounselling").removeClass('text-secondary');
+                $("#TypeofCounselling").addClass('text-success');
+                //$('#nTypeofCounselling').removeClass('collapse');
+
+                $("#ClientsCategory").empty();
+                $("#ClientsCategory").append($('<option></option>').attr("value", '').text(''));
+                $("#ClientsCategory").append($('<option></option>').attr("value", 1).text('1.SU'));
+                $("#ClientsCategory").append($('<option></option>').attr("value", 2).text('2.IDU'));
+                $("#ClientsCategory").append($('<option></option>').attr("value", 3).text('3.MSM'));
+                $("#ClientsCategory").append($('<option></option>').attr("value", 4).text('4.FSW'));
+                $("#ClientsCategory").append($('<option></option>').attr("value", 5).text('5.Inmate'))
+                $("#ClientsCategory").append($('<option></option>').attr("value", 6).text('6.None of the above'))
+                $('#ClientsCategory').attr('readonly', false);
+                $("#ClientsCategory").removeClass('text-secondary');
+                $("#ClientsCategory").addClass('text-success');
+                //$('#nClientsCategory').removeClass('collapse');
+                
+
+            }
+        });
+
+        $(document).ready(function () {
+            $('#ctcno').mask('00-00-0000-000000');
+
+
+        });
+
     </script>
 
 }

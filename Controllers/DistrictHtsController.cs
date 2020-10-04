@@ -82,7 +82,7 @@ namespace htsApp.Controllers
             {
                 _context.Add(district);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(district);
         }
